@@ -8,6 +8,7 @@ from rule_builder.rules import Has, HasAll, Rule, HasGroup
 from worlds.generic.Rules import ItemRule, add_item_rule
 
 from .items import get_item_groups, NEOTwewyItemGroup
+from .location_data import LOCATION_DATA
 
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
@@ -37,6 +38,11 @@ def set_completion_condition(world: NEOTwewyWorld) -> None:
     world.set_completion_rule(Has("Victory"))
 
 def set_item_exception_rules(world: NEOTwewyWorld) -> None:
-    if world.options.minamimoto_pin:
-        add_item_rule(world.multiworld.get_location("W1D1 - Minamimoto's Pin", world.player),
-                    lambda item: NEOTwewyItemGroup.COMBAT_PIN.value in get_item_groups(item))
+    for location, data in LOCATION_DATA.items():
+        if data.combatPinOnly:
+            add_item_rule(world.multiworld.get_location(location,world.player),
+                          lambda item: NEOTwewyItemGroup.COMBAT_PIN.value in get_item_groups(item))
+
+    # if world.options.minamimoto_pin:
+    #     add_item_rule(world.multiworld.get_location("W1D1 - Minamimoto's Pin", world.player),
+    #                 lambda item: NEOTwewyItemGroup.COMBAT_PIN.value in get_item_groups(item))
