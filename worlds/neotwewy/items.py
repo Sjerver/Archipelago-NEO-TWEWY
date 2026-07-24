@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .item_data import ITEM_DATA, NEOTwewyItemGroup
+from .location_data import LOCATION_DATA
 
 from BaseClasses import Item, ItemClassification
 
@@ -39,14 +40,13 @@ def create_item_with_correct_classification(world: NEOTwewyWorld, name: str) -> 
 
 def create_all_items(world: NEOTwewyWorld) -> None:
 
-    itempool: list[Item] = [
-        world.create_item("Firestorm"),
-        world.create_item("Secret Report No. 1"),
-        world.create_item("Secret Report No. 2"),
-        world.create_item("Azamaru"),
-        world.create_item("Sugar Beam"),
-        world.create_item("Marvelous Crash"),
-    ]
+    itempool: list[Item] = []
+    for location, locationData in LOCATION_DATA.items():
+        if locationData.option == "" or locationData.option is None:
+            itempool.append(world.create_item(locationData.ogItem))
+        else:
+            if world.options.__getattribute__(locationData.option):
+                itempool.append(world.create_item(locationData.ogItem))
 
     number_of_items = len(itempool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

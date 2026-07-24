@@ -40,7 +40,8 @@ def set_completion_condition(world: NEOTwewyWorld) -> None:
 def set_item_exception_rules(world: NEOTwewyWorld) -> None:
     for location, data in LOCATION_DATA.items():
         if data.combatPinOnly:
-            add_item_rule(world.multiworld.get_location(location,world.player),
+            if data.option == "" or data.option is None or world.options.__getattribute__(data.option):
+                add_item_rule(world.multiworld.get_location(location,world.player),
                           lambda item: NEOTwewyItemGroup.COMBAT_PIN.value in get_item_groups(item))
 
     # if world.options.minamimoto_pin:
