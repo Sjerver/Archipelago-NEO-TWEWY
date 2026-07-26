@@ -7,7 +7,7 @@ from Options import OptionGroup, PerGameCommonOptions, Toggle
 
 class MinamimotoStartingPin(Toggle):
     """
-    Includes Minamimoto's Starting Pin in the item pool.
+    Includes additional copy of Minamimoto's Starting Pin in the item pool.
     """
 
     display_name = "Randomize Minamimoto's Starting Pin"

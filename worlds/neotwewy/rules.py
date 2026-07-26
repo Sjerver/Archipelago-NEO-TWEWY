@@ -22,13 +22,13 @@ def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
 
     w1d1_to_w1d2 = world.get_entrance("W1D1 to W1D2")
 
-    can_progress_w1d1 = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 1)
-    world.set_rule(w1d1_to_w1d2, can_progress_w1d1)
+    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 1)
+    world.set_rule(w1d1_to_w1d2, can_progress)
 
     w1d2_to_w1d3 = world.get_entrance("W1D2 to W1D3")
     
-    can_progress_w1d1 = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 2)
-    world.set_rule(w1d2_to_w1d3, can_progress_w1d1)
+    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 2)
+    world.set_rule(w1d2_to_w1d3, can_progress)
 
 def set_all_location_rules(world: NEOTwewyWorld) -> None:
     pass
