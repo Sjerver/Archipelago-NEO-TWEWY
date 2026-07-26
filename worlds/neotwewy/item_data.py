@@ -10,6 +10,7 @@ class NEOTwewyItemData(NamedTuple):
     itemType: NEOTwewyItemType
     itemClassification: ItemClassification
     itemGroups: list[str] | list[None]
+    # brand: str | None
 
 class NEOTwewyItemType(Enum):
     Invalid = -1 #Needed?
@@ -20,13 +21,19 @@ class NEOTwewyItemType(Enum):
     ItemMaterial = 4 #Needed?
     Book = 5
     Music = 6 #Needed?
+    #Add PIN Buttons mostly because of MinamimotoPIN Check can't at base be Y/X
 
 class NEOTwewyItemGroup(Enum):
     COMBAT_PIN = "Combat Pin"
     SECRET_REPORT = "Secret Report"
     MONEY = "Money Pin"
     RARE_METAL = "Rare Metal Pin"
-    #Maybe Thread Equip Slots?
+    # HEADGEAR = "Headgear"
+    # TOPS = "Tops"
+    # BOTTOMS = "Bottoms"
+    # FOOTWEAR = "Footwear"
+    # TWO_PIECE = "Two-Piece"
+    # ACCESSORY = "Accessory"
 
 ITEM_DATA: Dict[str, NEOTwewyItemData] = {
     "Shockwave": NEOTwewyItemData(1000, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),

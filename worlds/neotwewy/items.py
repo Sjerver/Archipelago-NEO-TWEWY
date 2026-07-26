@@ -26,7 +26,7 @@ for group, items in ITEM_GROUPS.items():
         ITEM_TO_GROUPS.setdefault(item, []).append(group)
 
 class NEOTwewyItem(Item):
-    game = "NEO The World Ends with You"
+    game = "NEO: The World Ends with You"
 
 def get_item_groups(item: Item) -> list[str] | list[None]:
     return ITEM_TO_GROUPS.get(item.name, [None])
