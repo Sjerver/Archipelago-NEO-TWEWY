@@ -11,7 +11,6 @@ class TestStartingPin(NEOTwewyTestBase):
             self.collect_by_name("Secret Report No. 1")
             self.assertTrue(self.can_reach_region("W1D2"))
         with self.subTest("Test reaching W1D3"):
-            self.collect_by_name("Secret Report No. 1")
             self.assertFalse(self.can_reach_region("W1D3"))
 
             self.collect_by_name("Secret Report No. 2")
