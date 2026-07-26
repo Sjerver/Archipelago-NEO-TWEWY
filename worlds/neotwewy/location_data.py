@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from enum import Enum
-from typing import Dict, NamedTuple, Optional
+from typing import NamedTuple
+
 
 class NEOTwewyLocationType(Enum):
     ScenarioReward = 0
@@ -9,17 +11,17 @@ class NEOTwewyLocationData(NamedTuple):
     """Special data container to contain the metadata of each item to make filtering work."""
 
     id: int
-    ogItem: str
+    og_item: str
 
     region: str
     location_type: NEOTwewyLocationType
 
-    combatPinOnly: bool
+    combat_pin_only: bool
 
-    addToGame: bool
-    option: Optional[str]
+    add_to_game: bool
+    option: str
 
-LOCATION_DATA: Dict[str, NEOTwewyLocationData] = {
+LOCATION_DATA: dict[str, NEOTwewyLocationData] = {
     "W1D1 - Minamimoto's Pin": NEOTwewyLocationData(110010, "Joli bécot", "W1D1", NEOTwewyLocationType.ScenarioReward,
                                                     True, False, "minamimoto_pin"),
     "W1D1 - Shibuya Hikarie": NEOTwewyLocationData(110020, "Firestorm", "W1D1", NEOTwewyLocationType.ScenarioReward,

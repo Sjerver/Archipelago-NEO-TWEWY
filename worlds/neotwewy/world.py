@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from collections.abc import Mapping
 from typing import Any
 
@@ -6,19 +7,20 @@ from worlds.AutoWorld import World
 
 # Imports of your world's files must be relative.
 from . import items, locations, regions, rules, web_world
-from . import options as NEOTwewy_options
+from . import options as neo_twewy_options
+
 
 class NEOTwewyWorld(World):
     """
-    NEO: The World Ends with You is a game that needs a description    
+    NEO: The World Ends with You is a game that needs a description
     """
 
     game = "NEO: The World Ends with You"
 
     web = web_world.NEOTwewyWebWorld()
 
-    options_dataclass = NEOTwewy_options.NEOTwewyOptions
-    options: NEOTwewy_options.NEOTwewyOptions
+    options_dataclass = neo_twewy_options.NEOTwewyOptions
+    options: neo_twewy_options.NEOTwewyOptions
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
@@ -37,7 +39,7 @@ class NEOTwewyWorld(World):
     def create_items(self) -> None:
         items.create_all_items(self)
 
-    def create_item(self, name: str) -> items.APQuestItem:
+    def create_item(self, name: str) -> items.NEOTwewyItem:
             return items.create_item_with_correct_classification(self, name)
 
     def get_filler_item_name(self) -> str:
