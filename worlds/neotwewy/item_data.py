@@ -1,27 +1,32 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, NamedTuple
+
 from enum import Enum
+from typing import NamedTuple
+
 from BaseClasses import ItemClassification
+
 
 class NEOTwewyItemData(NamedTuple):
     """Special data container to contain the metadata of each item to make filtering work."""
 
     id: int
-    itemType: NEOTwewyItemType
-    itemClassification: ItemClassification
-    itemGroups: list[str] | list[None]
+    item_type: NEOTwewyItemType
+    item_classification: ItemClassification
+    item_groups: list[NEOTwewyItemGroup]
     # brand: str | None
 
+
 class NEOTwewyItemType(Enum):
-    Invalid = -1 #Needed?
+    Invalid = -1  # Needed?
     Badge = 0
-    Costume = 1 #Threads
-    Food = 2 #Needed?
-    Valuable = 3 #FP
-    ItemMaterial = 4 #Needed?
+    Costume = 1  # Threads
+    Food = 2  # Needed?
+    Valuable = 3  # FP
+    ItemMaterial = 4  # Needed?
     Book = 5
-    Music = 6 #Needed?
-    #Add PIN Buttons mostly because of MinamimotoPIN Check can't at base be Y/X
+    Music = 6  # Needed?
+    # Add PIN Buttons mostly because of MinamimotoPIN Check can't at base be Y/X
+
 
 class NEOTwewyItemGroup(Enum):
     COMBAT_PIN = "Combat Pin"
@@ -35,319 +40,908 @@ class NEOTwewyItemGroup(Enum):
     # TWO_PIECE = "Two-Piece"
     # ACCESSORY = "Accessory"
 
-ITEM_DATA: Dict[str, NEOTwewyItemData] = {
-    "Shockwave": NEOTwewyItemData(1000, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Azamaru": NEOTwewyItemData(1001, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Shishio": NEOTwewyItemData(1002, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Midaregami": NEOTwewyItemData(1003, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Namikuguri": NEOTwewyItemData(1004, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+
+ITEM_DATA: dict[str, NEOTwewyItemData] = {
+    "Shockwave": NEOTwewyItemData(
+        1000, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Azamaru": NEOTwewyItemData(
+        1001, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Shishio": NEOTwewyItemData(
+        1002, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Midaregami": NEOTwewyItemData(
+        1003, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Namikuguri": NEOTwewyItemData(
+        1004, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Fuchin": NEOTwewyItemData(1005, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Kurorushi": NEOTwewyItemData(1006, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Honebami": NEOTwewyItemData(1007, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Grizzly": NEOTwewyItemData(1008, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Onimaru": NEOTwewyItemData(1009, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Kitsunegasaki": NEOTwewyItemData(1010, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Yukimitsu": NEOTwewyItemData(1011, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Sayosamonji": NEOTwewyItemData(1012, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Kurorushi": NEOTwewyItemData(
+        1006, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Honebami": NEOTwewyItemData(
+        1007, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Grizzly": NEOTwewyItemData(
+        1008, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Onimaru": NEOTwewyItemData(
+        1009, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Kitsunegasaki": NEOTwewyItemData(
+        1010, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Yukimitsu": NEOTwewyItemData(
+        1011, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Sayosamonji": NEOTwewyItemData(
+        1012, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Aizen": NEOTwewyItemData(1013, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Spin Twinz": NEOTwewyItemData(1014, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tsurumaru": NEOTwewyItemData(1015, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Reigetsu": NEOTwewyItemData(1016, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Jupiter of the Monkey II": NEOTwewyItemData(1017, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Spin Twinz": NEOTwewyItemData(
+        1014, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tsurumaru": NEOTwewyItemData(
+        1015, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Reigetsu": NEOTwewyItemData(
+        1016, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Jupiter of the Monkey II": NEOTwewyItemData(
+        1017, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Hotaru": NEOTwewyItemData(1018, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Grin Reaper": NEOTwewyItemData(1019, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Grunge Punch": NEOTwewyItemData(1020, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Jungle King": NEOTwewyItemData(1021, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Primal Roar": NEOTwewyItemData(1022, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Mosh 'n' Mash": NEOTwewyItemData(1023, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Fangs of Ice": NEOTwewyItemData(1024, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Slashcicle": NEOTwewyItemData(1025, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Right Claw": NEOTwewyItemData(1026, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Wicked Howl": NEOTwewyItemData(1027, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tigres Assemble!": NEOTwewyItemData(1028, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Rock 'n' Rock": NEOTwewyItemData(1029, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Crusher Rush": NEOTwewyItemData(1030, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Beringei": NEOTwewyItemData(1031, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Just Up Ahead": NEOTwewyItemData(1032, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Honor and Sacrifice": NEOTwewyItemData(1033, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "All or Nothing": NEOTwewyItemData(1034, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "One Day Closer": NEOTwewyItemData(1035, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Time Is Relative": NEOTwewyItemData(1036, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Got Your Back": NEOTwewyItemData(1037, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Take a Chance": NEOTwewyItemData(1038, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "No Turning Back": NEOTwewyItemData(1039, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Trial Without Error": NEOTwewyItemData(1040, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stinger": NEOTwewyItemData(1041, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "No Plan Required": NEOTwewyItemData(1042, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Don't Be Shocked": NEOTwewyItemData(1043, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cut Me Down": NEOTwewyItemData(1044, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Quench Your Thirst": NEOTwewyItemData(1045, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Try It Again": NEOTwewyItemData(1046, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Force Rounds": NEOTwewyItemData(1047, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Sugar Beam": NEOTwewyItemData(1048, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Nighty-Night Beam": NEOTwewyItemData(1049, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Glitter Beam": NEOTwewyItemData(1050, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Zip-Zap Beam": NEOTwewyItemData(1051, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stylish Beam": NEOTwewyItemData(1052, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Lovebird Magnum": NEOTwewyItemData(1053, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Garbage Gatling": NEOTwewyItemData(1054, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Top Dog Gatling": NEOTwewyItemData(1055, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Icky Beam": NEOTwewyItemData(1056, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Grin Reaper": NEOTwewyItemData(
+        1019, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Grunge Punch": NEOTwewyItemData(
+        1020, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Jungle King": NEOTwewyItemData(
+        1021, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Primal Roar": NEOTwewyItemData(
+        1022, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Mosh 'n' Mash": NEOTwewyItemData(
+        1023, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Fangs of Ice": NEOTwewyItemData(
+        1024, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Slashcicle": NEOTwewyItemData(
+        1025, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Right Claw": NEOTwewyItemData(
+        1026, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Wicked Howl": NEOTwewyItemData(
+        1027, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tigres Assemble!": NEOTwewyItemData(
+        1028, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Rock 'n' Rock": NEOTwewyItemData(
+        1029, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Crusher Rush": NEOTwewyItemData(
+        1030, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Beringei": NEOTwewyItemData(
+        1031, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Just Up Ahead": NEOTwewyItemData(
+        1032, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Honor and Sacrifice": NEOTwewyItemData(
+        1033, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "All or Nothing": NEOTwewyItemData(
+        1034, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "One Day Closer": NEOTwewyItemData(
+        1035, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Time Is Relative": NEOTwewyItemData(
+        1036, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Got Your Back": NEOTwewyItemData(
+        1037, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Take a Chance": NEOTwewyItemData(
+        1038, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "No Turning Back": NEOTwewyItemData(
+        1039, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Trial Without Error": NEOTwewyItemData(
+        1040, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stinger": NEOTwewyItemData(
+        1041, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "No Plan Required": NEOTwewyItemData(
+        1042, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Don't Be Shocked": NEOTwewyItemData(
+        1043, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cut Me Down": NEOTwewyItemData(
+        1044, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Quench Your Thirst": NEOTwewyItemData(
+        1045, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Try It Again": NEOTwewyItemData(
+        1046, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Force Rounds": NEOTwewyItemData(
+        1047, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Sugar Beam": NEOTwewyItemData(
+        1048, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Nighty-Night Beam": NEOTwewyItemData(
+        1049, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Glitter Beam": NEOTwewyItemData(
+        1050, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Zip-Zap Beam": NEOTwewyItemData(
+        1051, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stylish Beam": NEOTwewyItemData(
+        1052, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Lovebird Magnum": NEOTwewyItemData(
+        1053, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Garbage Gatling": NEOTwewyItemData(
+        1054, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Top Dog Gatling": NEOTwewyItemData(
+        1055, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Icky Beam": NEOTwewyItemData(
+        1056, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Frog": NEOTwewyItemData(1057, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Freestyle Launcher": NEOTwewyItemData(1058, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Lovely Launcher": NEOTwewyItemData(1059, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cupid Launcher": NEOTwewyItemData(1060, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cuddly Launcher": NEOTwewyItemData(1061, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Heartthrob Launcher": NEOTwewyItemData(1062, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Hobblin' Hippo": NEOTwewyItemData(1063, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "croaky panic": NEOTwewyItemData(1064, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "MONOCROW": NEOTwewyItemData(1065, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Idol Within": NEOTwewyItemData(1066, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Be My Last": NEOTwewyItemData(1067, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "All Burned Out": NEOTwewyItemData(1068, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Aspect of Truth": NEOTwewyItemData(1069, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Live Your Truth": NEOTwewyItemData(1070, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Freestyle Launcher": NEOTwewyItemData(
+        1058, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Lovely Launcher": NEOTwewyItemData(
+        1059, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cupid Launcher": NEOTwewyItemData(
+        1060, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cuddly Launcher": NEOTwewyItemData(
+        1061, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Heartthrob Launcher": NEOTwewyItemData(
+        1062, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Hobblin' Hippo": NEOTwewyItemData(
+        1063, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "croaky panic": NEOTwewyItemData(
+        1064, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "MONOCROW": NEOTwewyItemData(
+        1065, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Idol Within": NEOTwewyItemData(
+        1066, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Be My Last": NEOTwewyItemData(
+        1067, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "All Burned Out": NEOTwewyItemData(
+        1068, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Aspect of Truth": NEOTwewyItemData(
+        1069, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Live Your Truth": NEOTwewyItemData(
+        1070, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Grus": NEOTwewyItemData(1071, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Rapturous Rabbits": NEOTwewyItemData(1072, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Classical Cacophany": NEOTwewyItemData(1073, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Magical Metamorphosis": NEOTwewyItemData(1074, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Blizzard Bunny": NEOTwewyItemData(1075, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Frosty Friendship": NEOTwewyItemData(1076, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stellar Self-Portrait": NEOTwewyItemData(1077, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Gorgeous Gemstone": NEOTwewyItemData(1078, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Hole Bunny": NEOTwewyItemData(1079, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Great Magma Escape": NEOTwewyItemData(1080, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Great Balloon Voyage": NEOTwewyItemData(1081, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Fluffy Ovine Cloud": NEOTwewyItemData(1082, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Lonely Space Warrior": NEOTwewyItemData(1083, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Great Lunar View": NEOTwewyItemData(1084, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Pyramids' Old Secret": NEOTwewyItemData(1085, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Ever-Moving Machine": NEOTwewyItemData(1086, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Rapturous Rabbits": NEOTwewyItemData(
+        1072, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Classical Cacophany": NEOTwewyItemData(
+        1073, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Magical Metamorphosis": NEOTwewyItemData(
+        1074, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Blizzard Bunny": NEOTwewyItemData(
+        1075, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Frosty Friendship": NEOTwewyItemData(
+        1076, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stellar Self-Portrait": NEOTwewyItemData(
+        1077, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Gorgeous Gemstone": NEOTwewyItemData(
+        1078, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Hole Bunny": NEOTwewyItemData(
+        1079, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Great Magma Escape": NEOTwewyItemData(
+        1080, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Great Balloon Voyage": NEOTwewyItemData(
+        1081, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Fluffy Ovine Cloud": NEOTwewyItemData(
+        1082, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Lonely Space Warrior": NEOTwewyItemData(
+        1083, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Great Lunar View": NEOTwewyItemData(
+        1084, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Pyramids' Old Secret": NEOTwewyItemData(
+        1085, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Ever-Moving Machine": NEOTwewyItemData(
+        1086, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Puffer": NEOTwewyItemData(1087, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Out of Your Mine": NEOTwewyItemData(1088, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Be of Two Mines": NEOTwewyItemData(1089, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Boom in the Night": NEOTwewyItemData(1090, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Chain Is Gonna Come": NEOTwewyItemData(1091, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Back on the Chain Bang": NEOTwewyItemData(1092, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bad to the Bomb": NEOTwewyItemData(1093, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Snake in the Blast": NEOTwewyItemData(1094, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bee in Your Bomb-et": NEOTwewyItemData(1095, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "I Scream, U Scream!": NEOTwewyItemData(1096, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bloom 4 U": NEOTwewyItemData(1097, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Takanosu": NEOTwewyItemData(1098, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Kumokiri": NEOTwewyItemData(1099, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Taikokane": NEOTwewyItemData(1100, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Kasen Kanesada": NEOTwewyItemData(1101, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Iwatoshi": NEOTwewyItemData(1102, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Omokage": NEOTwewyItemData(1103, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Out of Your Mine": NEOTwewyItemData(
+        1088, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Be of Two Mines": NEOTwewyItemData(
+        1089, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Boom in the Night": NEOTwewyItemData(
+        1090, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Chain Is Gonna Come": NEOTwewyItemData(
+        1091, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Back on the Chain Bang": NEOTwewyItemData(
+        1092, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bad to the Bomb": NEOTwewyItemData(
+        1093, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Snake in the Blast": NEOTwewyItemData(
+        1094, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bee in Your Bomb-et": NEOTwewyItemData(
+        1095, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "I Scream, U Scream!": NEOTwewyItemData(
+        1096, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bloom 4 U": NEOTwewyItemData(
+        1097, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Takanosu": NEOTwewyItemData(
+        1098, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Kumokiri": NEOTwewyItemData(
+        1099, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Taikokane": NEOTwewyItemData(
+        1100, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Kasen Kanesada": NEOTwewyItemData(
+        1101, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Iwatoshi": NEOTwewyItemData(
+        1102, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Omokage": NEOTwewyItemData(
+        1103, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Wolf": NEOTwewyItemData(1104, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Thunder and Lightning": NEOTwewyItemData(1105, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Thunder and Lightning": NEOTwewyItemData(
+        1105, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Iris": NEOTwewyItemData(1106, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Caught in the Undertow": NEOTwewyItemData(1107, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Let the Rain Fall Down": NEOTwewyItemData(1108, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Taste of Poison Paradise": NEOTwewyItemData(1109, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Diamonds in the Sky": NEOTwewyItemData(1110, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "All Comes Crashing Down": NEOTwewyItemData(1111, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "What a Wicked Game": NEOTwewyItemData(1112, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Where I Break Free": NEOTwewyItemData(1113, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Born of Stormy Skies": NEOTwewyItemData(1114, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Lightning in My Hands": NEOTwewyItemData(1115, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "In the Stars Tonight": NEOTwewyItemData(1116, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Blinded by the Light": NEOTwewyItemData(1117, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "In My Misery": NEOTwewyItemData(1118, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Phoenix": NEOTwewyItemData(1119, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Joli bécot": NEOTwewyItemData(1120, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Angelic Kick": NEOTwewyItemData(1121, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Gust of Gorgeous": NEOTwewyItemData(1122, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Wicked Wind": NEOTwewyItemData(1123, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Sistah Subwoofer": NEOTwewyItemData(1124, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Disco Divekick": NEOTwewyItemData(1125, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Soul Ablaze": NEOTwewyItemData(1126, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Killer Princess": NEOTwewyItemData(1127, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Leo Armo": NEOTwewyItemData(1128, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Marvelous Crash": NEOTwewyItemData(1129, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Crater's Kiss": NEOTwewyItemData(1130, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cranberry Crystal": NEOTwewyItemData(1131, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Pink Matador": NEOTwewyItemData(1132, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Electric Manicure": NEOTwewyItemData(1133, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bolt of Beauty": NEOTwewyItemData(1134, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Caught in the Undertow": NEOTwewyItemData(
+        1107, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Let the Rain Fall Down": NEOTwewyItemData(
+        1108, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Taste of Poison Paradise": NEOTwewyItemData(
+        1109, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Diamonds in the Sky": NEOTwewyItemData(
+        1110, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "All Comes Crashing Down": NEOTwewyItemData(
+        1111, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "What a Wicked Game": NEOTwewyItemData(
+        1112, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Where I Break Free": NEOTwewyItemData(
+        1113, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Born of Stormy Skies": NEOTwewyItemData(
+        1114, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Lightning in My Hands": NEOTwewyItemData(
+        1115, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "In the Stars Tonight": NEOTwewyItemData(
+        1116, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Blinded by the Light": NEOTwewyItemData(
+        1117, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "In My Misery": NEOTwewyItemData(
+        1118, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Phoenix": NEOTwewyItemData(
+        1119, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Joli bécot": NEOTwewyItemData(
+        1120, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Angelic Kick": NEOTwewyItemData(
+        1121, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Gust of Gorgeous": NEOTwewyItemData(
+        1122, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Wicked Wind": NEOTwewyItemData(
+        1123, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Sistah Subwoofer": NEOTwewyItemData(
+        1124, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Disco Divekick": NEOTwewyItemData(
+        1125, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Soul Ablaze": NEOTwewyItemData(
+        1126, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Killer Princess": NEOTwewyItemData(
+        1127, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Leo Armo": NEOTwewyItemData(
+        1128, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Marvelous Crash": NEOTwewyItemData(
+        1129, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Crater's Kiss": NEOTwewyItemData(
+        1130, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cranberry Crystal": NEOTwewyItemData(
+        1131, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Pink Matador": NEOTwewyItemData(
+        1132, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Electric Manicure": NEOTwewyItemData(
+        1133, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bolt of Beauty": NEOTwewyItemData(
+        1134, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Rex": NEOTwewyItemData(1135, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cherry Bomb": NEOTwewyItemData(1136, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Jealous Rage": NEOTwewyItemData(1137, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bad Romance": NEOTwewyItemData(1138, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cold Cony×Cony": NEOTwewyItemData(1139, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Glacial Getaway": NEOTwewyItemData(1140, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Polar Princess": NEOTwewyItemData(1141, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Creepy Crystal": NEOTwewyItemData(1142, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Velvet Vampire": NEOTwewyItemData(1143, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Calamitous Candle": NEOTwewyItemData(1144, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bérangère Lapin": NEOTwewyItemData(1145, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Grégoire Lapin": NEOTwewyItemData(1146, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Popguin": NEOTwewyItemData(1147, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Generous": NEOTwewyItemData(1148, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Once Upon a Dream": NEOTwewyItemData(1149, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Music of the Woods": NEOTwewyItemData(1150, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Mom's Secret Ingredient": NEOTwewyItemData(1151, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Mysterious Gift": NEOTwewyItemData(1152, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The World Within": NEOTwewyItemData(1153, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Ingenious": NEOTwewyItemData(1154, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "My Precious Moments": NEOTwewyItemData(1155, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Beloved": NEOTwewyItemData(1156, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "ShoGun・Void": NEOTwewyItemData(1157, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "ManjuSage・Void": NEOTwewyItemData(1158, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "EnJo・Blaze": NEOTwewyItemData(1159, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "KoYo・Blaze": NEOTwewyItemData(1160, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tsubaki・Frost": NEOTwewyItemData(1161, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "HiGan・Frost": NEOTwewyItemData(1162, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "InaZuma・Surge": NEOTwewyItemData(1163, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "RaiJin・Surge": NEOTwewyItemData(1164, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Doku Doku Panic": NEOTwewyItemData(1165, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "KeiRyu・Epoch": NEOTwewyItemData(1166, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "RyuGu・Void": NEOTwewyItemData(1167, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "HanaDoki・Void": NEOTwewyItemData(1168, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Slitherin' Snake": NEOTwewyItemData(1169, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "HoGyoku・Gleam": NEOTwewyItemData(1170, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Cherry Bomb": NEOTwewyItemData(
+        1136, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Jealous Rage": NEOTwewyItemData(
+        1137, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bad Romance": NEOTwewyItemData(
+        1138, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cold Cony×Cony": NEOTwewyItemData(  # noqa: RUF001
+        1139, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Glacial Getaway": NEOTwewyItemData(
+        1140, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Polar Princess": NEOTwewyItemData(
+        1141, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Creepy Crystal": NEOTwewyItemData(
+        1142, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Velvet Vampire": NEOTwewyItemData(
+        1143, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Calamitous Candle": NEOTwewyItemData(
+        1144, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bérangère Lapin": NEOTwewyItemData(
+        1145, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Grégoire Lapin": NEOTwewyItemData(
+        1146, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Popguin": NEOTwewyItemData(
+        1147, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Generous": NEOTwewyItemData(
+        1148, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Once Upon a Dream": NEOTwewyItemData(
+        1149, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Music of the Woods": NEOTwewyItemData(
+        1150, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Mom's Secret Ingredient": NEOTwewyItemData(
+        1151, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "A Mysterious Gift": NEOTwewyItemData(
+        1152, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The World Within": NEOTwewyItemData(
+        1153, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Ingenious": NEOTwewyItemData(
+        1154, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "My Precious Moments": NEOTwewyItemData(
+        1155, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Beloved": NEOTwewyItemData(
+        1156, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "ShoGun・Void": NEOTwewyItemData(
+        1157, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "ManjuSage・Void": NEOTwewyItemData(
+        1158, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "EnJo・Blaze": NEOTwewyItemData(
+        1159, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "KoYo・Blaze": NEOTwewyItemData(
+        1160, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tsubaki・Frost": NEOTwewyItemData(
+        1161, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "HiGan・Frost": NEOTwewyItemData(
+        1162, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "InaZuma・Surge": NEOTwewyItemData(
+        1163, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "RaiJin・Surge": NEOTwewyItemData(
+        1164, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Doku Doku Panic": NEOTwewyItemData(
+        1165, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "KeiRyu・Epoch": NEOTwewyItemData(
+        1166, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "RyuGu・Void": NEOTwewyItemData(
+        1167, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "HanaDoki・Void": NEOTwewyItemData(
+        1168, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Slitherin' Snake": NEOTwewyItemData(
+        1169, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "HoGyoku・Gleam": NEOTwewyItemData(
+        1170, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Jelly": NEOTwewyItemData(1171, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Righteous Rabbit": NEOTwewyItemData(1172, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Brooding Bunny": NEOTwewyItemData(1173, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Ring-a-Ling": NEOTwewyItemData(1174, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Flyin' High": NEOTwewyItemData(1175, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Melancony×Melancony": NEOTwewyItemData(1176, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "ConyｘCony": NEOTwewyItemData(1177, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Seraphic Snow": NEOTwewyItemData(1178, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Righteous Rabbit": NEOTwewyItemData(
+        1172, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Brooding Bunny": NEOTwewyItemData(
+        1173, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Ring-a-Ling": NEOTwewyItemData(
+        1174, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Flyin' High": NEOTwewyItemData(
+        1175, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Melancony×Melancony": NEOTwewyItemData(  # noqa: RUF001
+        1176, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "ConyｘCony": NEOTwewyItemData(  # noqa: RUF001
+        1177, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Seraphic Snow": NEOTwewyItemData(
+        1178, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Raven": NEOTwewyItemData(1179, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Balloon Trip": NEOTwewyItemData(1180, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Riled-Up Ribbon": NEOTwewyItemData(1181, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Talented": NEOTwewyItemData(1182, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Catch a Wave": NEOTwewyItemData(1183, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Kappa Panic": NEOTwewyItemData(1184, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Forlorn Treasure": NEOTwewyItemData(1185, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cave of Secrets": NEOTwewyItemData(1186, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "In the Snipeline": NEOTwewyItemData(1187, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Don't Miss Your Shot": NEOTwewyItemData(1188, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Any Way You Snipe It": NEOTwewyItemData(1189, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "garagara": NEOTwewyItemData(1190, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Shot in the Dank": NEOTwewyItemData(1191, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "What Can Never Be": NEOTwewyItemData(1192, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stuck in the Middle": NEOTwewyItemData(1193, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Time in a Bottle": NEOTwewyItemData(1194, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stay Gold": NEOTwewyItemData(1195, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stay Beautiful": NEOTwewyItemData(1196, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Let the Storm Rage On": NEOTwewyItemData(1197, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "SuiGen・Void": NEOTwewyItemData(1198, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "KoCho・Void": NEOTwewyItemData(1199, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "ShiDare・Shade": NEOTwewyItemData(1200, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tsuzumi・Echo": NEOTwewyItemData(1201, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Balloon Trip": NEOTwewyItemData(
+        1180, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Riled-Up Ribbon": NEOTwewyItemData(
+        1181, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Talented": NEOTwewyItemData(
+        1182, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Catch a Wave": NEOTwewyItemData(
+        1183, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Kappa Panic": NEOTwewyItemData(
+        1184, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "A Forlorn Treasure": NEOTwewyItemData(
+        1185, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cave of Secrets": NEOTwewyItemData(
+        1186, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "In the Snipeline": NEOTwewyItemData(
+        1187, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Don't Miss Your Shot": NEOTwewyItemData(
+        1188, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Any Way You Snipe It": NEOTwewyItemData(
+        1189, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "garagara": NEOTwewyItemData(
+        1190, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Shot in the Dank": NEOTwewyItemData(
+        1191, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "What Can Never Be": NEOTwewyItemData(
+        1192, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stuck in the Middle": NEOTwewyItemData(
+        1193, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Time in a Bottle": NEOTwewyItemData(
+        1194, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stay Gold": NEOTwewyItemData(
+        1195, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stay Beautiful": NEOTwewyItemData(
+        1196, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Let the Storm Rage On": NEOTwewyItemData(
+        1197, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "SuiGen・Void": NEOTwewyItemData(
+        1198, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "KoCho・Void": NEOTwewyItemData(
+        1199, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "ShiDare・Shade": NEOTwewyItemData(
+        1200, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tsuzumi・Echo": NEOTwewyItemData(
+        1201, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Shiba": NEOTwewyItemData(1202, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Let's Have Fungis!": NEOTwewyItemData(1203, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Fuel to the Fire": NEOTwewyItemData(1204, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Fire in the Belly": NEOTwewyItemData(1205, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Ifs, Ands, or Bolts": NEOTwewyItemData(1206, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Sparks Will Fly": NEOTwewyItemData(1207, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "AraUmi・Gale": NEOTwewyItemData(1208, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "FuJin・Gale": NEOTwewyItemData(1209, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "IroGoi・Shift": NEOTwewyItemData(1210, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "ShoRyu・Gleam": NEOTwewyItemData(1211, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Prismatic Princess": NEOTwewyItemData(1212, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Benevolent King": NEOTwewyItemData(1213, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Top o' Topo": NEOTwewyItemData(1214, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Petals of Love": NEOTwewyItemData(1215, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Adventurous": NEOTwewyItemData(1216, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Fairytale Memories": NEOTwewyItemData(1217, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Topo the Famished": NEOTwewyItemData(1218, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Enchanted Baker": NEOTwewyItemData(1219, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "An Inseparable Pair": NEOTwewyItemData(1220, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Hammond's New Home": NEOTwewyItemData(1221, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Mr. Mew": NEOTwewyItemData(1222, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "KaChu・Blaze": NEOTwewyItemData(1223, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "AkaFuji・Blaze": NEOTwewyItemData(1224, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Firestorm": NEOTwewyItemData(1225, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "GoKa・Blaze": NEOTwewyItemData(1226, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Notice Me Lightning": NEOTwewyItemData(1227, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Oh Em Gee Lightning": NEOTwewyItemData(1228, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Trendy Tornado": NEOTwewyItemData(1229, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Giddy Graviton": NEOTwewyItemData(1230, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Good Mood Graviton": NEOTwewyItemData(1231, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Relative Absoluteness": NEOTwewyItemData(1232, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Let's Have Fungis!": NEOTwewyItemData(
+        1203, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Fuel to the Fire": NEOTwewyItemData(
+        1204, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Fire in the Belly": NEOTwewyItemData(
+        1205, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Ifs, Ands, or Bolts": NEOTwewyItemData(
+        1206, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Sparks Will Fly": NEOTwewyItemData(
+        1207, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "AraUmi・Gale": NEOTwewyItemData(
+        1208, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "FuJin・Gale": NEOTwewyItemData(
+        1209, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "IroGoi・Shift": NEOTwewyItemData(
+        1210, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "ShoRyu・Gleam": NEOTwewyItemData(
+        1211, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Prismatic Princess": NEOTwewyItemData(
+        1212, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Benevolent King": NEOTwewyItemData(
+        1213, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Top o' Topo": NEOTwewyItemData(
+        1214, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Petals of Love": NEOTwewyItemData(
+        1215, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Adventurous": NEOTwewyItemData(
+        1216, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Fairytale Memories": NEOTwewyItemData(
+        1217, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Topo the Famished": NEOTwewyItemData(
+        1218, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Enchanted Baker": NEOTwewyItemData(
+        1219, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "An Inseparable Pair": NEOTwewyItemData(
+        1220, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Hammond's New Home": NEOTwewyItemData(
+        1221, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Mr. Mew": NEOTwewyItemData(
+        1222, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "KaChu・Blaze": NEOTwewyItemData(
+        1223, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "AkaFuji・Blaze": NEOTwewyItemData(
+        1224, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Firestorm": NEOTwewyItemData(
+        1225, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "GoKa・Blaze": NEOTwewyItemData(
+        1226, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Notice Me Lightning": NEOTwewyItemData(
+        1227, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Oh Em Gee Lightning": NEOTwewyItemData(
+        1228, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Trendy Tornado": NEOTwewyItemData(
+        1229, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Giddy Graviton": NEOTwewyItemData(
+        1230, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Good Mood Graviton": NEOTwewyItemData(
+        1231, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Relative Absoluteness": NEOTwewyItemData(
+        1232, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Pachy": NEOTwewyItemData(1233, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Day Off Outside": NEOTwewyItemData(1234, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Cozy Hilltop Windmill": NEOTwewyItemData(1235, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Breezy Ovine Wind": NEOTwewyItemData(1236, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Ever-Arctic Treasure": NEOTwewyItemData(1237, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Moonlit Night Inside": NEOTwewyItemData(1238, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Woolly Triple Axel": NEOTwewyItemData(1239, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Cursed Croaker": NEOTwewyItemData(1240, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Roly Poly Cricket": NEOTwewyItemData(1241, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Thirsty Frog": NEOTwewyItemData(1242, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Golden Kappa Panic": NEOTwewyItemData(1243, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Snap Crackle Popcorn": NEOTwewyItemData(1244, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Sunny Side Skillet": NEOTwewyItemData(1245, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Tasty Ovine Snack": NEOTwewyItemData(1246, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Gentle Airplane Pilot": NEOTwewyItemData(1247, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Song of Friendship": NEOTwewyItemData(1248, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "The Woolly Jazz Player": NEOTwewyItemData(1249, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Back to the Ewe-ture": NEOTwewyItemData(1250, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "A Day Off Outside": NEOTwewyItemData(
+        1234, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Cozy Hilltop Windmill": NEOTwewyItemData(
+        1235, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Breezy Ovine Wind": NEOTwewyItemData(
+        1236, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Ever-Arctic Treasure": NEOTwewyItemData(
+        1237, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "A Moonlit Night Inside": NEOTwewyItemData(
+        1238, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Woolly Triple Axel": NEOTwewyItemData(
+        1239, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Cursed Croaker": NEOTwewyItemData(
+        1240, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Roly Poly Cricket": NEOTwewyItemData(
+        1241, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Thirsty Frog": NEOTwewyItemData(
+        1242, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Golden Kappa Panic": NEOTwewyItemData(
+        1243, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Snap Crackle Popcorn": NEOTwewyItemData(
+        1244, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Sunny Side Skillet": NEOTwewyItemData(
+        1245, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "A Tasty Ovine Snack": NEOTwewyItemData(
+        1246, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Gentle Airplane Pilot": NEOTwewyItemData(
+        1247, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Song of Friendship": NEOTwewyItemData(
+        1248, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "The Woolly Jazz Player": NEOTwewyItemData(
+        1249, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Back to the Ewe-ture": NEOTwewyItemData(
+        1250, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Shark": NEOTwewyItemData(1251, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Chef Amphibie": NEOTwewyItemData(1252, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Star Quarterback": NEOTwewyItemData(1253, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Dine 'n' Dash": NEOTwewyItemData(1254, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bolt Boar": NEOTwewyItemData(1255, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Mr. Fangman": NEOTwewyItemData(1256, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Burnin' Boar": NEOTwewyItemData(1257, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "HOG FANG": NEOTwewyItemData(1258, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Big Bang Boar": NEOTwewyItemData(1259, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Chef Amphibie": NEOTwewyItemData(
+        1252, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Star Quarterback": NEOTwewyItemData(
+        1253, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Dine 'n' Dash": NEOTwewyItemData(
+        1254, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bolt Boar": NEOTwewyItemData(
+        1255, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Mr. Fangman": NEOTwewyItemData(
+        1256, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Burnin' Boar": NEOTwewyItemData(
+        1257, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "HOG FANG": NEOTwewyItemData(
+        1258, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Big Bang Boar": NEOTwewyItemData(
+        1259, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Cervus": NEOTwewyItemData(1260, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "UFO Rescue": NEOTwewyItemData(1261, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tigre PUNKS": NEOTwewyItemData(1262, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bright Chord": NEOTwewyItemData(1263, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Bootleg Tune": NEOTwewyItemData(1264, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Discordance": NEOTwewyItemData(1265, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Maiden Beat": NEOTwewyItemData(1266, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Aw, That Shucks!": NEOTwewyItemData(1267, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Headliner": NEOTwewyItemData(1268, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Runaway Rocket": NEOTwewyItemData(1269, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Clawed Guardian": NEOTwewyItemData(1270, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "HOG Healer": NEOTwewyItemData(1271, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Rip-Roarin' Red": NEOTwewyItemData(1272, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Never Too Young": NEOTwewyItemData(1273, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Lost in Space": NEOTwewyItemData(1274, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Rainbow Route 66": NEOTwewyItemData(1275, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Hogway to Heaven": NEOTwewyItemData(1276, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Heartful Hot Dog": NEOTwewyItemData(1277, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "UFO Rescue": NEOTwewyItemData(
+        1261, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tigre PUNKS": NEOTwewyItemData(
+        1262, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bright Chord": NEOTwewyItemData(
+        1263, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Bootleg Tune": NEOTwewyItemData(
+        1264, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Discordance": NEOTwewyItemData(
+        1265, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Maiden Beat": NEOTwewyItemData(
+        1266, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Aw, That Shucks!": NEOTwewyItemData(
+        1267, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Headliner": NEOTwewyItemData(
+        1268, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Runaway Rocket": NEOTwewyItemData(
+        1269, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Clawed Guardian": NEOTwewyItemData(
+        1270, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "HOG Healer": NEOTwewyItemData(
+        1271, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Rip-Roarin' Red": NEOTwewyItemData(
+        1272, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Never Too Young": NEOTwewyItemData(
+        1273, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Lost in Space": NEOTwewyItemData(
+        1274, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Rainbow Route 66": NEOTwewyItemData(
+        1275, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Hogway to Heaven": NEOTwewyItemData(
+        1276, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Heartful Hot Dog": NEOTwewyItemData(
+        1277, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Rhino": NEOTwewyItemData(1278, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "FANG Defender": NEOTwewyItemData(1279, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Watch Your Step": NEOTwewyItemData(1280, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "You Can Overcome": NEOTwewyItemData(1281, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Look Out Below": NEOTwewyItemData(1282, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Absolute Relativity": NEOTwewyItemData(1283, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "FANG Defender": NEOTwewyItemData(
+        1279, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Watch Your Step": NEOTwewyItemData(
+        1280, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "You Can Overcome": NEOTwewyItemData(
+        1281, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Look Out Below": NEOTwewyItemData(
+        1282, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Absolute Relativity": NEOTwewyItemData(
+        1283, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Pig": NEOTwewyItemData(1284, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Seductive Snare": NEOTwewyItemData(1285, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Deadly Fragrance": NEOTwewyItemData(1286, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "A Drawn Conclusion": NEOTwewyItemData(1287, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Gravving at Straws": NEOTwewyItemData(1288, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Seductive Snare": NEOTwewyItemData(
+        1285, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Deadly Fragrance": NEOTwewyItemData(
+        1286, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "A Drawn Conclusion": NEOTwewyItemData(
+        1287, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Gravving at Straws": NEOTwewyItemData(
+        1288, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Leon": NEOTwewyItemData(1289, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tenka Juzumaru": NEOTwewyItemData(1290, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Tenka Mikazuki": NEOTwewyItemData(1291, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Coochy-Coochy-Coo": NEOTwewyItemData(1292, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Crush": NEOTwewyItemData(1293, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Cards": NEOTwewyItemData(1294, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Comet": NEOTwewyItemData(1295, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Burst": NEOTwewyItemData(1296, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Blades": NEOTwewyItemData(1297, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Black Cat Burn": NEOTwewyItemData(1298, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "St. Ver's Uppercut": NEOTwewyItemData(1299, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "St. Aestas' Shrapnel": NEOTwewyItemData(1300, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "St. Autumnus' Strike": NEOTwewyItemData(1301, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "St. Hiems' Shotgun": NEOTwewyItemData(1302, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Charge Punch E": NEOTwewyItemData(1303, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Snare Trap E": NEOTwewyItemData(1304, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Just Keep Swimmin'!": NEOTwewyItemData(1305, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "What a Shock!": NEOTwewyItemData(1306, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Stop the Music!": NEOTwewyItemData(1307, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Thanks Very Mochi!": NEOTwewyItemData(1308, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Holy Guacamole!": NEOTwewyItemData(1309, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Exercisin' Gator": NEOTwewyItemData(1310, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
-    "Handstandin' Panda": NEOTwewyItemData(1311, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]),
+    "Tenka Juzumaru": NEOTwewyItemData(
+        1290, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Tenka Mikazuki": NEOTwewyItemData(
+        1291, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Coochy-Coochy-Coo": NEOTwewyItemData(
+        1292, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Crush": NEOTwewyItemData(
+        1293, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Cards": NEOTwewyItemData(
+        1294, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Comet": NEOTwewyItemData(
+        1295, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Burst": NEOTwewyItemData(
+        1296, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Blades": NEOTwewyItemData(
+        1297, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Black Cat Burn": NEOTwewyItemData(
+        1298, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "St. Ver's Uppercut": NEOTwewyItemData(
+        1299, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "St. Aestas' Shrapnel": NEOTwewyItemData(
+        1300, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "St. Autumnus' Strike": NEOTwewyItemData(
+        1301, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "St. Hiems' Shotgun": NEOTwewyItemData(
+        1302, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Charge Punch E": NEOTwewyItemData(
+        1303, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Snare Trap E": NEOTwewyItemData(
+        1304, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Just Keep Swimmin'!": NEOTwewyItemData(
+        1305, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "What a Shock!": NEOTwewyItemData(
+        1306, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Stop the Music!": NEOTwewyItemData(
+        1307, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Thanks Very Mochi!": NEOTwewyItemData(
+        1308, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Holy Guacamole!": NEOTwewyItemData(
+        1309, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Exercisin' Gator": NEOTwewyItemData(
+        1310, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
+    "Handstandin' Panda": NEOTwewyItemData(
+        1311, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.COMBAT_PIN]
+    ),
     "Archipelago": NEOTwewyItemData(5000, NEOTwewyItemType.Badge, ItemClassification.filler, []),
     "5 Yen": NEOTwewyItemData(5001, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.MONEY]),
     "10 Yen": NEOTwewyItemData(5002, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.MONEY]),
@@ -358,17 +952,37 @@ ITEM_DATA: Dict[str, NEOTwewyItemData] = {
     "5000 Yen": NEOTwewyItemData(5007, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.MONEY]),
     "10000 Yen": NEOTwewyItemData(5008, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.MONEY]),
     "100000 Yen": NEOTwewyItemData(5009, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.MONEY]),
-    "Scarletite": NEOTwewyItemData(5100, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Rare Metal": NEOTwewyItemData(5101, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Tektite": NEOTwewyItemData(5102, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Adamantite": NEOTwewyItemData(5103, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Orichalcum": NEOTwewyItemData(5104, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Shadow Matter": NEOTwewyItemData(5105, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Dark Matter": NEOTwewyItemData(5106, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
+    "Scarletite": NEOTwewyItemData(
+        5100, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Rare Metal": NEOTwewyItemData(
+        5101, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Tektite": NEOTwewyItemData(
+        5102, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Adamantite": NEOTwewyItemData(
+        5103, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Orichalcum": NEOTwewyItemData(
+        5104, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Shadow Matter": NEOTwewyItemData(
+        5105, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Dark Matter": NEOTwewyItemData(
+        5106, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
     "Axion": NEOTwewyItemData(5107, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Dilaton": NEOTwewyItemData(5108, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Dibaryon": NEOTwewyItemData(5109, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
-    "Sfermion": NEOTwewyItemData(5110, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]),
+    "Dilaton": NEOTwewyItemData(
+        5108, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Dibaryon": NEOTwewyItemData(
+        5109, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
+    "Sfermion": NEOTwewyItemData(
+        5110, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL]
+    ),
     "Legendary Headphones": NEOTwewyItemData(10000, NEOTwewyItemType.Costume, ItemClassification.filler, []),
     "Legendary Tank Top": NEOTwewyItemData(10001, NEOTwewyItemType.Costume, ItemClassification.filler, []),
     "Legendary Shorts": NEOTwewyItemData(10002, NEOTwewyItemType.Costume, ItemClassification.filler, []),
@@ -647,30 +1261,78 @@ ITEM_DATA: Dict[str, NEOTwewyItemData] = {
     "B.H.C.C Side Gore Boots": NEOTwewyItemData(11507, NEOTwewyItemType.Costume, ItemClassification.filler, []),
     "B.H.C.C Tote Bag": NEOTwewyItemData(11508, NEOTwewyItemType.Costume, ItemClassification.filler, []),
     "FP": NEOTwewyItemData(30000, NEOTwewyItemType.Valuable, ItemClassification.filler, []),
-    "Secret Report No. 1": NEOTwewyItemData(31000, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 2": NEOTwewyItemData(31001, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 3": NEOTwewyItemData(31002, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 4": NEOTwewyItemData(31003, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 5": NEOTwewyItemData(31004, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 6": NEOTwewyItemData(31005, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 7": NEOTwewyItemData(31006, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 8": NEOTwewyItemData(31007, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 9": NEOTwewyItemData(31008, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 10": NEOTwewyItemData(31009, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 11": NEOTwewyItemData(31010, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 12": NEOTwewyItemData(31011, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 13": NEOTwewyItemData(31012, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 14": NEOTwewyItemData(31013, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 15": NEOTwewyItemData(31014, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 16": NEOTwewyItemData(31015, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 17": NEOTwewyItemData(31016, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 18": NEOTwewyItemData(31017, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 19": NEOTwewyItemData(31018, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 20": NEOTwewyItemData(31019, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 21": NEOTwewyItemData(31020, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 22": NEOTwewyItemData(31021, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 23": NEOTwewyItemData(31022, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
-    "Secret Report No. 24": NEOTwewyItemData(31023, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]),
+    "Secret Report No. 1": NEOTwewyItemData(
+        31000, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 2": NEOTwewyItemData(
+        31001, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 3": NEOTwewyItemData(
+        31002, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 4": NEOTwewyItemData(
+        31003, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 5": NEOTwewyItemData(
+        31004, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 6": NEOTwewyItemData(
+        31005, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 7": NEOTwewyItemData(
+        31006, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 8": NEOTwewyItemData(
+        31007, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 9": NEOTwewyItemData(
+        31008, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 10": NEOTwewyItemData(
+        31009, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 11": NEOTwewyItemData(
+        31010, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 12": NEOTwewyItemData(
+        31011, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 13": NEOTwewyItemData(
+        31012, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 14": NEOTwewyItemData(
+        31013, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 15": NEOTwewyItemData(
+        31014, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 16": NEOTwewyItemData(
+        31015, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 17": NEOTwewyItemData(
+        31016, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 18": NEOTwewyItemData(
+        31017, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 19": NEOTwewyItemData(
+        31018, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 20": NEOTwewyItemData(
+        31019, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 21": NEOTwewyItemData(
+        31020, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 22": NEOTwewyItemData(
+        31021, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 23": NEOTwewyItemData(
+        31022, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
+    "Secret Report No. 24": NEOTwewyItemData(
+        31023, NEOTwewyItemType.Book, ItemClassification.progression, [NEOTwewyItemGroup.SECRET_REPORT]
+    ),
     "Tips & Tricks Vol. 1": NEOTwewyItemData(31100, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Tips & Tricks Vol. 2": NEOTwewyItemData(31101, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Tips & Tricks Vol. 3": NEOTwewyItemData(31102, NEOTwewyItemType.Book, ItemClassification.filler, []),
@@ -754,14 +1416,4 @@ ITEM_DATA: Dict[str, NEOTwewyItemData] = {
     "Social Network Skills": NEOTwewyItemData(31241, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Side Quests": NEOTwewyItemData(31242, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Chapter Select": NEOTwewyItemData(31243, NEOTwewyItemType.Book, ItemClassification.filler, []),
-
-
 }
-
-
-
-
-
-
-
-

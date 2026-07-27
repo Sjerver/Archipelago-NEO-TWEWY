@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from BaseClasses import Tutorial
 from worlds.AutoWorld import WebWorld
 
 from .options import option_groups
+
+
 class NEOTwewyWebWorld(WebWorld):
     game = "NEO The World Ends with You"
 
@@ -16,5 +19,5 @@ class NEOTwewyWebWorld(WebWorld):
             "setup/en",
             ["Sjerver"],
         )
-    tutorials = [setup_en]
+    tutorials = [setup_en]  # noqa: RUF012
     option_groups = option_groups
