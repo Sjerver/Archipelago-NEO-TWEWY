@@ -47,6 +47,7 @@ The mod currently saves information about the last used seed in a separate file.
 5. Beating a day without having unlocked the next one, repeats the day from the beginning.
 6. When repeating a day you can press a configured  button to skip to the end of the day. The default key is F5 and 
    can be changed in the config file.
+7. The 1 Yen Pin has been replaced by the Archipelago Pin representing items from other worlds.
 
 
 ## Current Known Issue
