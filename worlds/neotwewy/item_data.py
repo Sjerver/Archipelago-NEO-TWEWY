@@ -1416,4 +1416,5 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
     "Social Network Skills": NEOTwewyItemData(31241, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Side Quests": NEOTwewyItemData(31242, NEOTwewyItemType.Book, ItemClassification.filler, []),
     "Chapter Select": NEOTwewyItemData(31243, NEOTwewyItemType.Book, ItemClassification.filler, []),
+    "5 FP": NEOTwewyItemData(33001, NEOTwewyItemType.Valuable, ItemClassification.filler, []),
 }

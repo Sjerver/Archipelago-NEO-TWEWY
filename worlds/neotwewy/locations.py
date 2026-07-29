@@ -36,5 +36,5 @@ def create_regular_locations(world: NEOTwewyWorld) -> None:
                 world.get_region(data.region).add_locations(get_location_names_with_ids([location]), NEOTwewyLocation)
 
 def create_events(world: NEOTwewyWorld) -> None:
-    w1d2 = world.get_region("W1D3")
-    w1d2.add_event("Reached Day 3", "Victory", location_type = NEOTwewyLocation, item_type = items.NEOTwewyItem)
+    w1d5 = world.get_region("W1D5")
+    w1d5.add_event("Reached Day 5", "Victory", location_type = NEOTwewyLocation, item_type = items.NEOTwewyItem)

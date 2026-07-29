@@ -20,15 +20,28 @@ def set_all_rules(world: NEOTwewyWorld) -> None:
 
 def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
 
-    w1d1_to_w1d2 = world.get_entrance("W1D1 to W1D2")
+    IMPLEMENTED_DAY_MAX = 4
 
-    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 1)
-    world.set_rule(w1d1_to_w1d2, can_progress)
+    for i in range(1,4):
+        for j in range(1,8):
+            secret_report_count = (i-1)*7 + j
+            if secret_report_count > IMPLEMENTED_DAY_MAX:
+                break
+            if j < 7:
+                entrance = world.get_entrance(f"W{i}D{j} to W{i}D{j+1}")
+            elif i < 3:
+                entrance = world.get_entrance(f"W{i}D{j} to W{i+1}D{1}")
+            can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, secret_report_count)
+            world.set_rule(entrance, can_progress)
 
-    w1d2_to_w1d3 = world.get_entrance("W1D2 to W1D3")
-    
-    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 2)
-    world.set_rule(w1d2_to_w1d3, can_progress)
+    if(IMPLEMENTED_DAY_MAX > 22):
+        w3d7_to_w3d8 = world.get_entrance("W3D7 to W3D7'")
+        can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 22)
+        world.set_rule(w3d7_to_w3d8, can_progress)
+    if(IMPLEMENTED_DAY_MAX > 23):
+        w3d8_to_w3d9 = world.get_entrance("W3D7' to W3D7''")
+        can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 23)
+        world.set_rule(w3d8_to_w3d9, can_progress)
 
 def set_all_location_rules(world: NEOTwewyWorld) -> None:
     pass
