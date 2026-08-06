@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from rule_builder.rules import Has, HasGroup
+from rule_builder.rules import Has, HasAny, HasGroup
 from worlds.generic.Rules import add_item_rule
 
+from .item_data import ITEM_DATA, NEOTwewyItemType
 from .items import NEOTwewyItemGroup, get_item_groups
 from .location_data import LOCATION_DATA
 
@@ -20,28 +21,29 @@ def set_all_rules(world: NEOTwewyWorld) -> None:
 
 def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
 
-    IMPLEMENTED_DAY_MAX = 4
+    report_rules = [
+        ("W1D1", "W1D2", 1),
+        ("W1D2", "W1D3", 2),
+        ("W1D3", "W1D3'", None),
+        ("W1D3'", "W1D4", 3),
+        ("W1D4", "W1D5", 4),
+    ]
 
-    for i in range(1,4):
-        for j in range(1,8):
-            secret_report_count = (i-1)*7 + j
-            if secret_report_count > IMPLEMENTED_DAY_MAX:
-                break
-            if j < 7:
-                entrance = world.get_entrance(f"W{i}D{j} to W{i}D{j+1}")
-            elif i < 3:
-                entrance = world.get_entrance(f"W{i}D{j} to W{i+1}D{1}")
-            can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, secret_report_count)
-            world.set_rule(entrance, can_progress)
+    for start, end, report in report_rules:
+        if report is None:
+            continue
+        entrance = world.get_entrance(f"{start} to {end}")
+        world.set_rule(entrance, HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, report))
 
-    if(IMPLEMENTED_DAY_MAX > 22):
-        w3d7_to_w3d8 = world.get_entrance("W3D7 to W3D7'")
-        can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 22)
-        world.set_rule(w3d7_to_w3d8, can_progress)
-    if(IMPLEMENTED_DAY_MAX > 23):
-        w3d8_to_w3d9 = world.get_entrance("W3D7' to W3D7''")
-        can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 23)
-        world.set_rule(w3d8_to_w3d9, can_progress)
+    if world.options.shops:
+        wall_reaper_w1d3 = world.get_entrance("W1D3 to W1D3'")
+        joli_becot_threads = [
+            itemName
+            for itemName, itemData in ITEM_DATA.items()
+            if itemData.brand == "Joli bécot" and itemData.item_type == NEOTwewyItemType.Costume
+        ]
+        has_1_joli_becot = HasAny(*joli_becot_threads)
+        world.set_rule(wall_reaper_w1d3, has_1_joli_becot)
 
 def set_all_location_rules(world: NEOTwewyWorld) -> None:
     pass

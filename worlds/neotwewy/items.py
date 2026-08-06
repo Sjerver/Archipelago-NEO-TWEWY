@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import Item
 
 from .item_data import ITEM_DATA, NEOTwewyItemGroup
-from .location_data import LOCATION_DATA
+from .location_data import LOCATION_DATA, NEOTwewyLocationType
 
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
@@ -43,6 +43,9 @@ def create_all_items(world: NEOTwewyWorld) -> None:
 
     item_pool: list[Item] = []
     for location_data in LOCATION_DATA.values():
+        if not world.options.shops and location_data.location_type == NEOTwewyLocationType.Shop:
+            # Shop locations only added when we have shops activated
+            continue
         if location_data.option == "" or location_data.option is None:
             item_pool.append(world.create_item(location_data.og_item))
         else:
