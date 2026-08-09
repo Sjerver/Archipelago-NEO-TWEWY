@@ -1732,4 +1732,5 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
     "3x Tektite": NEOTwewyItemData(
         33003, NEOTwewyItemType.Badge, ItemClassification.filler, [NEOTwewyItemGroup.RARE_METAL], "Unbranded"
     ),
+    "2 FP": NEOTwewyItemData(33004, NEOTwewyItemType.Valuable, ItemClassification.filler, [], "Unbranded"),
 }

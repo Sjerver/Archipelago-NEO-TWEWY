@@ -7,6 +7,7 @@ from typing import NamedTuple
 class NEOTwewyLocationType(Enum):
     ScenarioReward = 0
     Shop = 1
+    Dive = 2
 
 
 class NEOTwewyLocationData(NamedTuple):
@@ -26,79 +27,79 @@ class NEOTwewyLocationData(NamedTuple):
 
 SCENARIO_REWARDS: dict[str, NEOTwewyLocationData] = {
     "W1D1 - Minamimoto's Pin": NEOTwewyLocationData(
-        110010, "Joli bécot", "W1D1", NEOTwewyLocationType.ScenarioReward, True, False, "minamimoto_pin"
+        1110010, "Joli bécot", "W1D1", NEOTwewyLocationType.ScenarioReward, True, False, "minamimoto_pin"
     ),
     "W1D1 - Shibuya Hikarie": NEOTwewyLocationData(
-        110020, "Firestorm", "W1D1", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1110020, "Firestorm", "W1D1", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D2 - 104/Dogenzaka": NEOTwewyLocationData(
-        120010, "Sugar Beam", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1120010, "Sugar Beam", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D2 - Dogenzaka/O-EAST": NEOTwewyLocationData(
-        120020, "Marvelous Crash", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1120020, "Marvelous Crash", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D2 - TSUTAYA O-EAST": NEOTwewyLocationData(
-        120030, "Azamaru", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
-    ),
-    "W1D1 - Day Cleared": NEOTwewyLocationData(
-        101, "Secret Report No. 1", "W1D1", NEOTwewyLocationType.ScenarioReward, False, True, ""
-    ),
-    "W1D2 - Day Cleared": NEOTwewyLocationData(
-        102, "Secret Report No. 2", "W1D2", NEOTwewyLocationType.ScenarioReward, False, True, ""
+        1120030, "Azamaru", "W1D2", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D3 - Scramble/Center": NEOTwewyLocationData(
-        130010, "5000 Yen", "W1D3", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1130010, "5000 Yen", "W1D3'", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D3 - Center Street": NEOTwewyLocationData(
-        130020, "1000 Yen", "W1D3", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1130020, "1000 Yen", "W1D3'", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D3 - Scramble (10:50)": NEOTwewyLocationData(
-        130030, "Tigre PUNKS", "W1D3", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1130030, "Tigre PUNKS", "W1D3'", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Tipsy Tose Hall": NEOTwewyLocationData(
-        140005, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140005, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Shinji-of-Some-Trades Dive": NEOTwewyLocationData(
-        140010, "ShoGun・Void", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140010, "ShoGun・Void", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Center/Scramble": NEOTwewyLocationData(
-        140020, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140020, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Seiji-of-Some-Trades Dive": NEOTwewyLocationData(
-        140030, "Onimaru", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140030, "Onimaru", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Scramble/TOWER RECORDS": NEOTwewyLocationData(
-        140040, "Thunder and Lightning", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140040, "Thunder and Lightning", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Eiji Oji Quest (Item)": NEOTwewyLocationData(
-        140050, "1000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140050, "1000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Eiji Oji Quest (FP)": NEOTwewyLocationData(
-        140055, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140055, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - The Don Quest (Item)": NEOTwewyLocationData(
-        140060, "Axion", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140060, "Axion", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - The Don Quest (FP)": NEOTwewyLocationData(
-        140065, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140065, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Katsuhiko Tanimaru Quest (Item)": NEOTwewyLocationData(
-        140070, "1000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140070, "1000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Katsuhiko Tanimaru Quest (FP)": NEOTwewyLocationData(
-        140075, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140075, "5 FP", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
     "W1D4 - Phone Number Obtained": NEOTwewyLocationData(
-        140080, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+        1140080, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
     ),
-    "W1D4 - Vending Machine": NEOTwewyLocationData(
-        140090, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+    "W1D4 - Vending Machine (Repeat)": NEOTwewyLocationData(
+        1140090, "5000 Yen", "W1D4", NEOTwewyLocationType.ScenarioReward, False, False, ""
+    ),
+    "W1D1 - Day Cleared": NEOTwewyLocationData(
+        1000101, "Secret Report No. 1", "W1D1", NEOTwewyLocationType.ScenarioReward, False, True, ""
+    ),
+    "W1D2 - Day Cleared": NEOTwewyLocationData(
+        1000102, "Secret Report No. 2", "W1D2", NEOTwewyLocationType.ScenarioReward, False, True, ""
     ),
     "W1D3 - Day Cleared": NEOTwewyLocationData(
-        103, "Secret Report No. 3", "W1D3", NEOTwewyLocationType.ScenarioReward, False, True, ""
+        1000103, "Secret Report No. 3", "W1D3'", NEOTwewyLocationType.ScenarioReward, False, True, ""
     ),
     "W1D4 - Day Cleared": NEOTwewyLocationData(
-        104, "Secret Report No. 4", "W1D4", NEOTwewyLocationType.ScenarioReward, False, True, ""
+        1000104, "Secret Report No. 4", "W1D4", NEOTwewyLocationType.ScenarioReward, False, True, ""
     ),
 }
 
@@ -259,7 +260,7 @@ SHOP_REWARDS: dict[str, NEOTwewyLocationData] = {
         200609, "Frayed Cargo Pants", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "Shepherd House 1st Bucket Hat": NEOTwewyLocationData(
-        200701, "Bucket Hat", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200701, "Bucket Hat", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "Shepherd House 1st Sheepy T-Shirt": NEOTwewyLocationData(
         200703, "Sheepy T-Shirt", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
@@ -268,31 +269,31 @@ SHOP_REWARDS: dict[str, NEOTwewyLocationData] = {
         200706, "White Shirt", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "Shepherd House 1st Chinos": NEOTwewyLocationData(
-        200708, "Chinos", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200708, "Chinos", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "Shepherd House 1st Slip-ons": NEOTwewyLocationData(
-        200714, "Slip-ons", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200714, "Slip-ons", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "Shepherd House 1st The Great Magma Escape": NEOTwewyLocationData(
-        200717, "The Great Magma Escape", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200717, "The Great Magma Escape", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Flat-Brim Snapback": NEOTwewyLocationData(
-        200801, "Flat-Brim Snapback", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200801, "Flat-Brim Snapback", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Baseball Cap": NEOTwewyLocationData(
-        200802, "Baseball Cap", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200802, "Baseball Cap", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Wired Hairband": NEOTwewyLocationData(
         200804, "Wired Hairband", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Pullover Hoodie": NEOTwewyLocationData(
-        200806, "Pullover Hoodie", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200806, "Pullover Hoodie", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Tight Denim Skirt": NEOTwewyLocationData(
         200814, "Tight Denim Skirt", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG High-top Sneakers": NEOTwewyLocationData(
-        200817, "High-top Sneakers", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        200817, "High-top Sneakers", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "HOG FANG Chain Necklace (VIP 2)": NEOTwewyLocationData(
         200820, "Chain Necklace", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
@@ -362,42 +363,72 @@ SHOP_REWARDS: dict[str, NEOTwewyLocationData] = {
         203513, "Violet-Ebony Foxglove", "W1D4", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 2F Dazzling Denim Cap": NEOTwewyLocationData(
-        201401, "Dazzling Denim Cap", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201401, "Dazzling Denim Cap", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 2F Flat-Brim Snapback": NEOTwewyLocationData(
-        201402, "Flat-Brim Snapback", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201402, "Flat-Brim Snapback", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 2F Baseball Cap": NEOTwewyLocationData(
-        201403, "Baseball Cap", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201403, "Baseball Cap", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
-    "TOKYU HANDS 2F Beret": NEOTwewyLocationData(201404, "Beret", "W1D3", NEOTwewyLocationType.Shop, False, False, ""),
+    "TOKYU HANDS 2F Beret": NEOTwewyLocationData(201404, "Beret", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""),
     "TOKYU HANDS 1F Shockwave": NEOTwewyLocationData(
-        201301, "Shockwave", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201301, "Shockwave", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Force Rounds": NEOTwewyLocationData(
-        201302, "Force Rounds", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201302, "Force Rounds", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Firestorm": NEOTwewyLocationData(
-        201303, "Firestorm", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201303, "Firestorm", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Angelic Kick": NEOTwewyLocationData(
-        201304, "Angelic Kick", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201304, "Angelic Kick", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Azamaru": NEOTwewyLocationData(
-        201305, "Azamaru", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201305, "Azamaru", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Marvelous Crash": NEOTwewyLocationData(
-        201306, "Marvelous Crash", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201306, "Marvelous Crash", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 1F Joli bécot": NEOTwewyLocationData(
-        201311, "Joli bécot", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201311, "Joli bécot", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 3F Rare Metal": NEOTwewyLocationData(
-        201501, "3x Rare Metal", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201501, "3x Rare Metal", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
     "TOKYU HANDS 3F Tektite": NEOTwewyLocationData(
-        201502, "3x Tektite", "W1D3", NEOTwewyLocationType.Shop, False, False, ""
+        201502, "3x Tektite", "W1D3'", NEOTwewyLocationType.Shop, False, False, ""
     ),
 }
 
-LOCATION_DATA: dict[str, NEOTwewyLocationData] = SCENARIO_REWARDS | SHOP_REWARDS
+DIVE_DATA: dict[str, NEOTwewyLocationData] = {
+    "Dive [W1D4] @DreamChaser Gold Rank": NEOTwewyLocationData(
+        310400, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @DreamChaser Silver Rank": NEOTwewyLocationData(
+        310410, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @DreamChaser Bronze Rank": NEOTwewyLocationData(
+        310420, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @TrustNoOne Gold Rank": NEOTwewyLocationData(
+        310401, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @TrustNoOne Silver Rank": NEOTwewyLocationData(
+        310411, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @TrustNoOne Bronze Rank": NEOTwewyLocationData(
+        310421, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @RyojiOfAllTrades Gold Rank": NEOTwewyLocationData(
+        310403, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @RyojiOfAllTrades Silver Rank": NEOTwewyLocationData(
+        310413, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+    "Dive [W1D4] @RyojiOfAllTrades Bronze Rank": NEOTwewyLocationData(
+        310423, "2 FP", "W1D4", NEOTwewyLocationType.Dive, False, False, ""
+    ),
+}
+
+LOCATION_DATA: dict[str, NEOTwewyLocationData] = SCENARIO_REWARDS | SHOP_REWARDS | DIVE_DATA

@@ -32,6 +32,8 @@ def create_regular_locations(world: NEOTwewyWorld) -> None:
         if not world.options.shops and data.location_type == NEOTwewyLocationType.Shop:
             # Shop locations only added when we have shops activated
             continue
+        if not world.options.dive and data.location_type == NEOTwewyLocationType.Dive:
+            continue
         if data.option == "" or data.option is None:
             world.get_region(data.region).add_locations(get_location_names_with_ids([location]), NEOTwewyLocation)
         else:

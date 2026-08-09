@@ -55,5 +55,3 @@ not be able to receive items nor send checks.
 
 ## Current Known Issue
 
-- Currently, there is no way to tell which Archipelago items from other worlds you collect in game via scenario/quest
-  rewards. It is recommended to keep an eye on the MelonLoader console while playing. 
