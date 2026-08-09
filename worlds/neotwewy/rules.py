@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from rule_builder.rules import Has, HasGroup
+from rule_builder.rules import Has, HasAny, HasGroup
 from worlds.generic.Rules import add_item_rule
 
+from .item_data import ITEM_DATA, NEOTwewyItemType
 from .items import NEOTwewyItemGroup, get_item_groups
 from .location_data import LOCATION_DATA
 
@@ -20,15 +21,29 @@ def set_all_rules(world: NEOTwewyWorld) -> None:
 
 def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
 
-    w1d1_to_w1d2 = world.get_entrance("W1D1 to W1D2")
+    report_rules = [
+        ("W1D1", "W1D2", 1),
+        ("W1D2", "W1D3", 2),
+        ("W1D3", "W1D3'", None),
+        ("W1D3'", "W1D4", 3),
+        ("W1D4", "W1D5", 4),
+    ]
 
-    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 1)
-    world.set_rule(w1d1_to_w1d2, can_progress)
+    for start, end, report in report_rules:
+        if report is None:
+            continue
+        entrance = world.get_entrance(f"{start} to {end}")
+        world.set_rule(entrance, HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, report))
 
-    w1d2_to_w1d3 = world.get_entrance("W1D2 to W1D3")
-    
-    can_progress = HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 2)
-    world.set_rule(w1d2_to_w1d3, can_progress)
+    if world.options.shops:
+        wall_reaper_w1d3 = world.get_entrance("W1D3 to W1D3'")
+        joli_becot_threads = [
+            itemName
+            for itemName, itemData in ITEM_DATA.items()
+            if itemData.brand == "Joli bécot" and itemData.item_type == NEOTwewyItemType.Costume
+        ]
+        has_1_joli_becot = HasAny(*joli_becot_threads)
+        world.set_rule(wall_reaper_w1d3, has_1_joli_becot)
 
 def set_all_location_rules(world: NEOTwewyWorld) -> None:
     pass

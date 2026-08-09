@@ -4,7 +4,8 @@
 
 - [Archipelago](https://github.com/ArchipelagoMW/Archipelago/releases)
 - Melon Loader: [GitHub](https://github.com/LavaGang/MelonLoader/releases/latest)
-  - .Net Framework 4.8 may be needed for the installer: [Download](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+    - .NET Framework 4.8 may be needed for the
+      installer: [Download](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 - .NET Desktop Runtime 6.0.XX (If not already installed): [Download](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - NEO: The World Ends with You Archipelago Mod: [GitHub]((https://github.com/Sjerver/NEO-Twewy-Archipelago-Mod/releases))
 
@@ -17,9 +18,8 @@
 5. Download NEOTwewyArchipelagoMod.zip.
 6. Head to the NEOTwewyArchipelagoMod folder and open up /mods/. If this folder does not exist, run the game and it should appear.
 7. Extract the contents of the .zip file into mods. Ensure the files are not in a subfolder, this mod is not setup for that yet.
-8. Run the game once to create the needed Config file in the /UserData/ folder. 
-9. Edit `UserData/NEOTwewyArchipelagoConfig.json` to match the Archipelago room you want to connect to.
-10. Run the game.
+8. Edit `Mods/NeoTwewyArchipelago/NEOTwewyArchipelagoConfig.json` to match the Archipelago room you want to connect to.
+9. Run the game.
 
 ## Generating a Game
 
@@ -28,14 +28,17 @@
 
 ## Connecting to a Server
 
-1. Launch the NEO: The World Ends with You at least once with the mod to generate the config file.
-2. Open the file at `/UserData/NEOTwewyArchipelagoConfig.json`.
-3. Enter in the details for the archipelago game, such as the server address, port, username and password.
-4. Run the game and it you should see it connecting in the MelonLoader console.
+1. Open the file at `/UserData/NEOTwewyArchipelagoConfig.json`.
+2. Enter in the details for the archipelago game, such as the server address, port, username and password.
+3. Run the game.
+4. If you are able to start a new game save file, you have successfully connected to a server.
 
 ### Regarding Save File
 
-The mod currently saves information about the last used seed in a separate file. 
+The mod currently saves information about the last used seed in a separate file. This allows for offline play once the
+save file has been initialized. In order to initialize a new save file, simply start a new game while connected to a
+different seed. If you load up a save file while the seed from the server does not match the local save file, you will
+not be able to receive items nor send checks.
 
 ## Changes to the Base Game
 
@@ -51,7 +54,4 @@ The mod currently saves information about the last used seed in a separate file.
 
 
 ## Current Known Issue
-- Currently the client mod needs to connect to an Archipelago room during game startup because 
-  some game data is loaded based on the seed received from the server. This may change in future versions.
-- Currently there is no way to tell which Archipelago items from other worlds you collect in game. 
-  It is recommended to keep an eye on the MelonLoader console while playing. 
+
