@@ -2,29 +2,21 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from BaseClasses import Item
+from BaseClasses import Item, ItemClassification
 
-from .item_data import ITEM_DATA, NEOTwewyItemGroup
-from .location_data import LOCATION_DATA, NEOTwewyLocationType
+from .item_data import (
+    DEFAULT_ITEM_CLASSIFICATIONS,
+    DROP_INCREASING_THREADS,
+    ITEM_DATA,
+    ITEM_GROUPS,
+    ITEM_NAME_TO_ID,
+    ITEM_TO_GROUPS,
+    JOLI_BECOT_THREADS,
+)
+from .location_data import LOCATION_DATA, LOCATION_INCLUSION, PROGRESSIVE_ELEMENTS
 
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
-
-ITEM_NAME_TO_ID = {item_name: item_data.id for item_name, item_data in ITEM_DATA.items()}
-
-DEFAULT_ITEM_CLASSIFICATIONS = {item_name: item_data.item_classification for item_name, item_data in ITEM_DATA.items()}
-
-ITEM_GROUPS = {group.value: [] for group in NEOTwewyItemGroup}
-
-for item,data in ITEM_DATA.items():
-    for group in data.item_groups:
-        ITEM_GROUPS[group.value].append(item)
-
-ITEM_TO_GROUPS = {}
-
-for group, items in ITEM_GROUPS.items():
-    for item in items:
-        ITEM_TO_GROUPS.setdefault(item, []).append(group)
 
 class NEOTwewyItem(Item):
     game = "NEO: The World Ends with You"
@@ -35,19 +27,40 @@ def get_item_groups(item_to_get: Item) -> list[str] | list[None]:
 def get_random_filler_item_name(world: NEOTwewyWorld) -> str:
     return "5 Yen"
 
+def update_progression(old_classification: ItemClassification) -> ItemClassification:
+    if old_classification == ItemClassification.skip_balancing:
+        old_classification = ItemClassification.progression_skip_balancing
+    else:
+        old_classification = ItemClassification.progression
+    return old_classification
+
+
 def create_item_with_correct_classification(world: NEOTwewyWorld, name: str) -> NEOTwewyItem:
-    classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
-    return NEOTwewyItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
+    base_classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
+    item_data = ITEM_DATA[name]
+    if (
+        (name in JOLI_BECOT_THREADS and world.options.shops)
+        or (name == "Midaregami" and world.options.noise_drops)
+        or (name in DROP_INCREASING_THREADS and world.options.noise_drops)  # Location access rule is option dependant
+        or name in ITEM_GROUPS["FP"]
+        or (item_data.element in PROGRESSIVE_ELEMENTS and world.options.pig_drops)
+    ):
+        base_classification = update_progression(base_classification)
+
+    return NEOTwewyItem(name, base_classification, ITEM_NAME_TO_ID[name], world.player)
+
+
+def create_item_in_locked_location(world: NEOTwewyWorld, name: str, loc_name: str) -> None:
+    created_item = world.create_item(name)
+    location = world.get_location(loc_name)
+    location.place_locked_item(created_item)
 
 def create_all_items(world: NEOTwewyWorld) -> None:
-
     item_pool: list[Item] = []
-    for location_data in LOCATION_DATA.values():
-        if not world.options.shops and location_data.location_type == NEOTwewyLocationType.Shop:
-            # Shop locations only added when we have shops activated
+    for location_name, location_data in LOCATION_DATA.items():
+        if not LOCATION_INCLUSION[location_data.location_type](world):
             continue
-        if not world.options.dive and location_data.location_type == NEOTwewyLocationType.Dive:
-            continue
+        # These items can be in item pool
         if location_data.option == "" or location_data.option is None:
             item_pool.append(world.create_item(location_data.og_item))
         else:
