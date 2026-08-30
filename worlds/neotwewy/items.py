@@ -13,7 +13,7 @@ from .item_data import (
     ITEM_TO_GROUPS,
     JOLI_BECOT_THREADS,
 )
-from .location_data import LOCATION_DATA, LOCATION_INCLUSION, PROGRESSIVE_ELEMENTS
+from .location_data import LOCATION_DATA, LOCATION_INCLUSION, PROGRESSIVE_ELEMENTS, NEOTwewyLocationType
 
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
@@ -59,6 +59,12 @@ def create_all_items(world: NEOTwewyWorld) -> None:
     item_pool: list[Item] = []
     for location_name, location_data in LOCATION_DATA.items():
         if not LOCATION_INCLUSION[location_data.location_type](world):
+            continue
+        if (
+            location_data.location_type == NEOTwewyLocationType.DLC
+            and world.options.dlc_options == world.options.dlc_options.option_randomize_without_content
+        ):
+            # DLC can be included without its "original item"
             continue
         # These items can be in item pool
         if location_data.option == "" or location_data.option is None:

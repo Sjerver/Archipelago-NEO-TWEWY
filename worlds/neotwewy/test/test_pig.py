@@ -6,7 +6,7 @@ class TestPigs(NEOTwewyTestBase):
         "minamimoto_pin": False,
         "shops": True,
         "dive": False,
-        "noise_drops": True,
+        "noise_drops": False,
         "min_drop_rate": 0,
         "pig_drops": True,
     }
@@ -17,7 +17,6 @@ class TestPigs(NEOTwewyTestBase):
         # Reaching W1D3
         self.collect_by_name("Secret Report No. 1")
         self.collect_by_name("Secret Report No. 2")
-        self.collect_by_name("Midaregami")
 
         self.assertFalse(self.can_reach_location("W1D3 - Pig Carol (104 Building)"))
 

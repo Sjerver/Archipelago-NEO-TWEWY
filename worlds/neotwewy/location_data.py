@@ -17,6 +17,7 @@ class NEOTwewyLocationType(Enum):
     NoiseDrop = 3
     Skill = 4
     Pig = 5
+    DLC = 6
 
 
 class NEOTwewyLocationData(NamedTuple):
@@ -1322,7 +1323,68 @@ PIG_DATA: dict[str, NEOTwewyLocationData] = {
     ),
 }
 
-LOCATION_DATA: dict[str, NEOTwewyLocationData] = SCENARIO_REWARDS | SHOP_REWARDS | DIVE_DATA | ENEMY_DROPS | PIG_DATA
+DLC_DATA: dict[str, NEOTwewyLocationData] = {
+    "Legendary Threads Set Item 1": NEOTwewyLocationData(
+        1900001,
+        "Legendary Headphones",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Reapers' Game Survival Item 1": NEOTwewyLocationData(
+        1900011,
+        "UFO Rescue",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Legendary Threads Set Item 2": NEOTwewyLocationData(
+        1900002,
+        "Legendary Tank Top",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Legendary Threads Set Item 3": NEOTwewyLocationData(
+        1900003,
+        "Legendary Shorts",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Legendary Threads Set Item 4": NEOTwewyLocationData(
+        1900004,
+        "Legendary Sneakers",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Legendary Threads Set Item 5": NEOTwewyLocationData(
+        1900005,
+        "Legendary Music Player",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Reapers' Game Survival Item 2": NEOTwewyLocationData(
+        1900012,
+        "Virupaksa Hoodie",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+    "Reapers' Game Survival Item 3": NEOTwewyLocationData(
+        1900013,
+        "(CD) Track 48",
+        "W1D1",
+        NEOTwewyLocationType.DLC,
+        "",
+    ),
+}
+
+LOCATION_DATA: dict[str, NEOTwewyLocationData] = (
+    SCENARIO_REWARDS | SHOP_REWARDS | DIVE_DATA | ENEMY_DROPS | PIG_DATA | DLC_DATA
+)
 
 PROGRESSIVE_ELEMENTS: list[str] = [element for data in LOCATION_DATA.values() for element in data.elements]
 
@@ -1334,4 +1396,8 @@ LOCATION_INCLUSION: dict[NEOTwewyLocationType, Callable[[NEOTwewyWorld], bool | 
     NEOTwewyLocationType.NoiseDrop: lambda world: world.options.noise_drops,
     NEOTwewyLocationType.Skill: lambda world: False,
     NEOTwewyLocationType.Pig: lambda world: world.options.pig_drops,
+    NEOTwewyLocationType.DLC: lambda world: (
+        world.options.dlc_options
+        in [world.options.dlc_options.option_randomize, world.options.dlc_options.option_randomize_without_content]
+    ),
 }

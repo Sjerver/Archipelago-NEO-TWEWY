@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from Options import OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
 
 
 class MinamimotoStartingPin(Toggle):
@@ -88,6 +88,25 @@ class PigDrops(Toggle):
 
     display_name = "Pig Drops"
 
+class DLCOptions(Choice):
+    """
+    Decide how to handle the "Legendary Threads Set" and the "Reapers' Game Survival Set".
+    This setting can add 7 seven locations.
+    - vanilla: Keep them as they are normally.
+    - disable: Sets will not be given out when starting a new game.
+    - randomize: Randomize the sets as locations and include their items in the item pool.
+    - randomize_without_content: Randomize the sets as locations and do not include their items in the item pool.
+    """
+
+    display_name = "DLC Options"
+
+    option_vanilla = 0
+    option_disable = 1
+    option_randomize = 2
+    option_randomize_without_content = 3
+
+    default = option_vanilla
+
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
     minamimoto_pin: MinamimotoStartingPin
@@ -98,10 +117,11 @@ class NEOTwewyOptions(PerGameCommonOptions):
     deprioritize_non_chain: DeprioritizeNonChainable
     prevent_out_of_logic: PreventOutOfLogicDrops
     pig_drops: PigDrops
+    dlc_options: DLCOptions
 
 
 option_groups = [
-    OptionGroup("General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops]),
+    OptionGroup("General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions]),
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
     ),
