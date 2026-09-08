@@ -107,6 +107,14 @@ class DLCOptions(Choice):
 
     default = option_vanilla
 
+
+class Soundsurf(Toggle):
+    """
+    Choose whether to start with Soundsurf unlocked.
+    """
+
+    display_name = "Start with Soundsurf"
+
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
     minamimoto_pin: MinamimotoStartingPin
@@ -118,10 +126,13 @@ class NEOTwewyOptions(PerGameCommonOptions):
     prevent_out_of_logic: PreventOutOfLogicDrops
     pig_drops: PigDrops
     dlc_options: DLCOptions
+    soundsurf: Soundsurf
 
 
 option_groups = [
-    OptionGroup("General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions]),
+    OptionGroup(
+        "General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions, Soundsurf]
+    ),
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
     ),
