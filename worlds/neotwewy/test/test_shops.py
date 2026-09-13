@@ -1,9 +1,9 @@
-from worlds.neotwewy.locations import LOCATION_DATA, NEOTwewyLocationType
+from worlds.neotwewy.location_data import LOCATION_DATA, NEOTwewyLocationType
 from worlds.neotwewy.test.bases import NEOTwewyTestBase
 
 
 class TestDefault(NEOTwewyTestBase):
-    options = {"minamimoto_pin": False, "shops": True}
+    options = {"shops": True}
 
     def test_shops_in_logic(self):
         with self.subTest("Test that shop locations are in world"):
@@ -21,6 +21,9 @@ class TestDefault(NEOTwewyTestBase):
             self.collect_by_name("Secret Report No. 1")
             self.collect_by_name("Secret Report No. 2")
             self.assertFalse(w1d3_2.can_reach(self.multiworld.state))
-
+            # Pin with correct brand should not work
+            self.collect_by_name("Angelic Kick")
+            self.assertFalse(self.can_reach_region("W1D3'"))
+            # Thread with correct brand should work
             self.collect_by_name("Shredded Jeans")
             self.assertTrue(w1d3_2.can_reach(self.multiworld.state))
