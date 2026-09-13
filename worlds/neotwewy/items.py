@@ -42,7 +42,7 @@ def create_item_with_correct_classification(world: NEOTwewyWorld, name: str) -> 
         (name in JOLI_BECOT_THREADS and world.options.shops)
         or (name == "Midaregami" and world.options.noise_drops)
         or (name in DROP_INCREASING_THREADS and world.options.noise_drops)  # Location access rule is option dependant
-        or name in ITEM_GROUPS["FP"]
+        or name in ITEM_GROUPS["FP_ITEM"]
         or (item_data.element in PROGRESSIVE_ELEMENTS and world.options.pig_drops)
     ):
         base_classification = update_progression(base_classification)

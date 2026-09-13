@@ -43,7 +43,7 @@ class HasFP(Rule["NEOTwewyWorld"], game="NEO: The World Ends with You"):
         def item_dependencies(self) -> dict[str, set[int]]:
             # this function is only required if you have caching enabled
             required_items = []
-            required_items.extend(ITEM_GROUPS["FP"])
+            required_items.extend(ITEM_GROUPS["FP_ITEM"])
             return {i: {id(self)} for i in required_items}
 
         @override
