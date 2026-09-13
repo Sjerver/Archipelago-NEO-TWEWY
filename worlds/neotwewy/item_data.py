@@ -35,7 +35,7 @@ class NEOTwewyItemGroup(Enum):
     SECRET_REPORT = "Secret Report"
     MONEY = "Money Pin"
     RARE_METAL = "Rare Metal Pin"
-    FP = "FP"
+    FP_ITEM = "FP_ITEM"
     # HEADGEAR = "Headgear"
     # TOPS = "Tops"
     # BOTTOMS = "Bottoms"
@@ -3069,7 +3069,7 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
         30000,
         NEOTwewyItemType.Valuable,
         ItemClassification.skip_balancing,
-        [NEOTwewyItemGroup.FP],
+        [NEOTwewyItemGroup.FP_ITEM],
         "Unbranded",
         0,
         "None",
@@ -3676,7 +3676,7 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
         33001,
         NEOTwewyItemType.Valuable,
         ItemClassification.skip_balancing,
-        [NEOTwewyItemGroup.FP],
+        [NEOTwewyItemGroup.FP_ITEM],
         "Unbranded",
         0,
         "None",
@@ -3691,7 +3691,7 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
         33004,
         NEOTwewyItemType.Valuable,
         ItemClassification.skip_balancing,
-        [NEOTwewyItemGroup.FP],
+        [NEOTwewyItemGroup.FP_ITEM],
         "Unbranded",
         0,
         "None",
