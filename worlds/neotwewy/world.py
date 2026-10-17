@@ -50,13 +50,4 @@ class NEOTwewyWorld(CachedRuleBuilderWorld):
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         options_dict = self.options.as_dict("prevent_out_of_logic", "min_drop_rate", "dlc_options", "soundsurf")
 
-        noise_drop_reqs: dict[str, dict[str, Any]] = {
-            name: {
-                "min_drop_rate": max(1, ceil((self.options.min_drop_rate / 100) / data_id.chance)),
-                "chainable": data_id.chainable,
-                "blue_noise": data_id.blue_noise,
-            }
-            for name, data_id in ENEMY_DROPS.items()
-        }
-
-        return {"options": options_dict, "noise_drop_reqs": noise_drop_reqs}
+        return {"options": options_dict}
