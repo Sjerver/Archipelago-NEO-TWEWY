@@ -51,5 +51,5 @@ class NEOTwewyWorld(CachedRuleBuilderWorld):
     def fill_slot_data(self) -> Mapping[str, Any]:
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         options_dict = self.options.as_dict("prevent_out_of_logic", "min_drop_rate", "dlc_options",
-                                            "soundsurf", "sns", "shops")
+                                            "soundsurf", "sns", "shops", "cutscene_skip_speed")
         return {"options": options_dict}

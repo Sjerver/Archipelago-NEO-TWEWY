@@ -126,6 +126,17 @@ class SNS(Toggle):
     display_name = "Randomize Social Network Nodes"
 
 
+class CutsceneSkipSpeed(Range):
+    """
+    The speed multiplier applied to cutscenes and overworld dialog.
+    10x is the default value the game applies normally.
+    """
+
+    display_name = "Cutscene Skip Speed"
+    range_start = 10
+    range_end = 100
+    default = 10
+
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
     minamimoto_pin: MinamimotoStartingPin
@@ -139,6 +150,7 @@ class NEOTwewyOptions(PerGameCommonOptions):
     dlc_options: DLCOptions
     soundsurf: Soundsurf
     sns: SNS
+    cutscene_skip_speed: CutsceneSkipSpeed
 
 
 option_groups = [
@@ -148,6 +160,6 @@ option_groups = [
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
     ),
-    OptionGroup("Quality of Life", [Soundsurf]
+    OptionGroup("Quality of Life", [Soundsurf, CutsceneSkipSpeed]
                 ),
 ]
