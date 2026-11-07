@@ -21,6 +21,6 @@ REGION_RULES: list[tuple[str, str, Rule, Callable[[NEOTwewyWorld], bool | Toggle
 ]
 
 SKILL_EVENT_RULES: list[tuple[str, Rule]] = [
-    ("Hard Unlocked", HasFP(4) & Has("SNS Node: Sho Minamimoto")),
+    ("Hard Unlocked", HasFP(5) & Has("SNS Node: Sho Minamimoto")),
     ("Easy Unlocked", HasFP(1) & Has("SNS Node: Tosai 'Fret' Furesawa")),
 ]

@@ -135,7 +135,7 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             drop_multiplier += furthest_level * level_multiplier
 
             # only once you can reach day 3 for food to get to minimum style reqs [50 max required right now]
-            if state.can_reach_region("W1D3"):
+            if state.can_reach_region("W1D3", self.player):
                 drop_increasing_items = DROP_INCREASING_THREADS
                 for thread in drop_increasing_items:
                     if inventory[thread] > 0:

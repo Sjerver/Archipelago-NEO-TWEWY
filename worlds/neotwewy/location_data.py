@@ -538,8 +538,6 @@ SOCIAL_NODE_DATA: dict[str, NEOTwewyLocationData] = {
     "[SNS] Miki Saionji: Reach VIP Level 3 for Gatto Nero": NEOTwewyLocationData(501083, "SNS Node: Miki Saionji",
                                                                                  "W1D3",
                                                                                  NEOTwewyLocationType.SocialNode, "", ),
-    "[SNS] Ken Doi: Place 3 orders at SPICY CURRY DON": NEOTwewyLocationData(501087, "SNS Node: Ken Doi", "W1D4",
-                                                                             NEOTwewyLocationType.SocialNode, "", ),
     "[SNS] Aadiv: Place 3 orders at Crowned Curry": NEOTwewyLocationData(501088, "SNS Node: Aadiv", "W1D4",
                                                                          NEOTwewyLocationType.SocialNode, "", ),
     "[SNS] Suzu Ito: Place 3 orders at Suzu Slurpz": NEOTwewyLocationData(501089, "SNS Node: Suzu Ito", "W1D4",

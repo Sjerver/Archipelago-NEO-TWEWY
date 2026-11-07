@@ -1622,8 +1622,6 @@ ITEM_DATA: dict[str, NEOTwewyItemData] = {
                                             "Unbranded", 0, "None"),
     "SNS Node: Miki Saionji": NEOTwewyItemData(50083, NEOTwewyItemType.Node, ItemClassification.progression, [],
                                                "Unbranded", 0, "None"),
-    "SNS Node: Ken Doi": NEOTwewyItemData(50087, NEOTwewyItemType.Node, ItemClassification.progression, [], "Unbranded",
-                                          0, "None"),
     "SNS Node: Aadiv": NEOTwewyItemData(50088, NEOTwewyItemType.Node, ItemClassification.progression, [], "Unbranded",
                                         0, "None"),
     "SNS Node: Suzu Ito": NEOTwewyItemData(50089, NEOTwewyItemType.Node, ItemClassification.progression, [],
