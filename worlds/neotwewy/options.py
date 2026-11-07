@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 
 class MinamimotoStartingPin(Toggle):
@@ -79,6 +79,7 @@ class PreventOutOfLogicDrops(Toggle):
 
     display_name = "Prevent out-of-logic Noise Drops"
 
+
 class PigDrops(Toggle):
     """
     Includes drops from pigs as locations.
@@ -87,6 +88,7 @@ class PigDrops(Toggle):
     """
 
     display_name = "Pig Drops"
+
 
 class DLCOptions(Choice):
     """
@@ -115,6 +117,15 @@ class Soundsurf(Toggle):
 
     display_name = "Start with Soundsurf"
 
+
+class SNS(Toggle):
+    """
+    Adds the unlocking of characters for the social network as locations and items.
+    """
+
+    display_name = "Randomize Social Network Nodes"
+
+
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
     minamimoto_pin: MinamimotoStartingPin
@@ -127,13 +138,16 @@ class NEOTwewyOptions(PerGameCommonOptions):
     pig_drops: PigDrops
     dlc_options: DLCOptions
     soundsurf: Soundsurf
+    sns: SNS
 
 
 option_groups = [
     OptionGroup(
-        "General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions, Soundsurf]
+        "General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions, SNS]
     ),
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
     ),
+    OptionGroup("Quality of Life", [Soundsurf]
+                ),
 ]

@@ -4,8 +4,7 @@ from typing import TYPE_CHECKING
 
 from rule_builder.rules import False_, Has, HasGroup, True_
 from worlds.generic.Rules import add_item_rule
-
-from .custom_rule import HasFP, ReachedMinimumDropRate
+from .custom_rule import ReachedMinimumDropRate
 from .item_data import NEOTwewyItemGroup
 from .items import get_item_groups
 from .location_data import LOCATION_DATA, NEOTwewyLocationType
@@ -14,11 +13,13 @@ from .rule_data import REGION_RULES, SKILL_EVENT_RULES
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
 
+
 def set_all_rules(world: NEOTwewyWorld) -> None:
     set_all_entrance_rules(world)
     set_all_location_rules(world)
     set_completion_condition(world)
     set_item_exception_rules(world)
+
 
 def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
     for start, end, rule, condition in REGION_RULES:
@@ -26,7 +27,9 @@ def set_all_entrance_rules(world: NEOTwewyWorld) -> None:
             entrance = world.get_entrance(f"{start} to {end}")
             world.set_rule(entrance, rule)
 
+
 def set_all_location_rules(world: NEOTwewyWorld) -> None:
+    set_vip_rules(world)
     if world.options.noise_drops:
         set_noise_drop_location_rules(world)
     if world.options.pig_drops:
@@ -49,10 +52,38 @@ def set_item_exception_rules(world: NEOTwewyWorld) -> None:
 
 
 def set_event_location_rules(world: NEOTwewyWorld) -> None:
-    for skill, fp in SKILL_EVENT_RULES:
+    for skill, rule in SKILL_EVENT_RULES:
         loc = world.get_location(skill)
-        has_fp = HasFP(fp)
-        world.set_rule(loc, has_fp)
+        world.set_rule(loc, rule)
+
+
+def set_vip_rules(world: NEOTwewyWorld) -> None:
+    for location, data in LOCATION_DATA.items():
+        if world.options.shops and data.location_type == NEOTwewyLocationType.Shop:
+            if "(VIP" in location:
+                world_location = world.get_location(location)
+                vip_level = int(location[-2:-1]) - 1
+                brand = data.brand
+
+                item_name = "Progressive VIP " + brand
+
+                has_vip_level = Has(item_name, vip_level)
+                world.set_rule(world_location, has_vip_level)
+        elif world.options.sns and data.location_type == NEOTwewyLocationType.SocialNode:
+            if "Reach VIP Level 3 for" in location:
+                world_location = world.get_location(location)
+                brand = location.split("Reach VIP Level 3 for ")[1]
+                item_name = "Progressive VIP " + brand
+
+                has_vip_level = Has(item_name, 2)
+                world.set_rule(world_location, has_vip_level)
+        elif data.location_type == NEOTwewyLocationType.VIP:
+            world_location = world.get_location(location)
+            brand = data.brand
+            vip_level = int(location[-1:]) - 1
+            item_name = "Progressive VIP " + brand
+            has_vip_level = Has(item_name, vip_level)
+            world.set_rule(world_location, has_vip_level)
 
 
 def set_noise_drop_location_rules(world: NEOTwewyWorld) -> None:
@@ -90,6 +121,3 @@ def set_pig_drop_location_rules(world: NEOTwewyWorld) -> None:
                 for element in data.elements:
                     elemental_rule = elemental_rule & HasGroup(element)
                 world.set_rule(world_location, elemental_rule)
-
-
-

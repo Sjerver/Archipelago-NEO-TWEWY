@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 from Options import Toggle
 from rule_builder.rules import Has, HasAny, HasGroup, Rule
-
+from .custom_rule import HasFP
 from .item_data import JOLI_BECOT_THREADS, NEOTwewyItemGroup
 
 if TYPE_CHECKING:
@@ -20,8 +20,7 @@ REGION_RULES: list[tuple[str, str, Rule, Callable[[NEOTwewyWorld], bool | Toggle
     ("W1D4", "W1D5", HasGroup(NEOTwewyItemGroup.SECRET_REPORT.value, 4), lambda world: True),
 ]
 
-
-SKILL_EVENT_RULES: list[tuple[str, int]] = [
-    ("Hard Unlocked", 4),
-    ("Easy Unlocked", 1),
+SKILL_EVENT_RULES: list[tuple[str, Rule]] = [
+    ("Hard Unlocked", HasFP(4) & Has("SNS Node: Sho Minamimoto")),
+    ("Easy Unlocked", HasFP(1) & Has("SNS Node: Tosai 'Fret' Furesawa")),
 ]

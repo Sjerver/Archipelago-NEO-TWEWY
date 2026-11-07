@@ -12,13 +12,13 @@ class TestPigs(NEOTwewyTestBase):
     }
 
     def test_elemental_pig(self) -> None:
-        self.assertFalse(self.can_reach_location("W1D3 - Pig Carol (104 Building)"))
+        self.assertFalse(self.can_reach_location("[Pig] W1D3 - Pig Carol (104 Building)"))
 
         # Reaching W1D3
         self.collect_by_name("Secret Report No. 1")
         self.collect_by_name("Secret Report No. 2")
 
-        self.assertFalse(self.can_reach_location("W1D3 - Pig Carol (104 Building)"))
+        self.assertFalse(self.can_reach_location("[Pig] W1D3 - Pig Carol (104 Building)"))
 
         self.collect_by_name("Firestorm")
-        self.assertTrue(self.can_reach_location("W1D3 - Pig Carol (104 Building)"))
+        self.assertTrue(self.can_reach_location("[Pig] W1D3 - Pig Carol (104 Building)"))

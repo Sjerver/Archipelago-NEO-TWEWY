@@ -1,14 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from math import ceil
 from typing import Any
 
 from rule_builder.cached_world import CachedRuleBuilderWorld
-
 from . import item_data, items, locations, regions, rules, web_world
 from . import options as neo_twewy_options
-from .location_data import ENEMY_DROPS
 
 
 class NEOTwewyWorld(CachedRuleBuilderWorld):
@@ -46,8 +43,13 @@ class NEOTwewyWorld(CachedRuleBuilderWorld):
     def get_filler_item_name(self) -> str:
         return items.get_random_filler_item_name(self)
 
+    def create_filler(self, filler_first: list[str] = []) -> items.NEOTwewyItem:
+        if filler_first.__len__() > 0:
+            return self.create_item(filler_first.pop())
+        return self.create_item(self.get_filler_item_name())
+
     def fill_slot_data(self) -> Mapping[str, Any]:
         # If you need access to the player's chosen options on the client side, there is a helper for that.
-        options_dict = self.options.as_dict("prevent_out_of_logic", "min_drop_rate", "dlc_options", "soundsurf")
-
+        options_dict = self.options.as_dict("prevent_out_of_logic", "min_drop_rate", "dlc_options",
+                                            "soundsurf", "sns", "shops")
         return {"options": options_dict}

@@ -53,7 +53,7 @@ not be able to receive items nor send checks.
 7. The 1 Yen Pin has been replaced by the Archipelago Pin representing items from other worlds. This pin is worth 1000
    Yen.
 8. Drop rate increasing threads have a maximum style requirement of 50.
-9. Soundsurf can be unlocked at the start.
+9. Soundsurf can be unlocked at the start via an optional setting.
 
 
 ## Current Known Issue

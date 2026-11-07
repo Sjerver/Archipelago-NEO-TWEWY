@@ -28,4 +28,5 @@ Additionally you will have to install this [Client mod](https://github.com/Sjerv
 7. The 1 Yen Pin has been replaced by the Archipelago Pin representing items from other worlds. This pin is worth 1000
    Yen.
 8. Drop rate increasing threads have a maximum style requirement of 50.
-9. Soundsurf can be unlocked at the start.
+9. Soundsurf can be unlocked at the start via an optional setting.
+10. VIP levels are always randomized. Their rewards can be obtained by entering a shop of the corresponding brand.

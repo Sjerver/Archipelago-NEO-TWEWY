@@ -9,7 +9,6 @@ from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
 from rule_builder.field_resolvers import resolve_field
 from rule_builder.rules import Rule
-
 from .item_data import DROP_INCREASING_THREADS, ITEM_DATA, ITEM_GROUPS
 from .regions import EXPECTED_LEVEL_PER_REGION
 
@@ -33,9 +32,9 @@ class HasFP(Rule["NEOTwewyWorld"], game="NEO: The World Ends with You"):
         @override
         def _evaluate(self, state: CollectionState) -> bool:
             fp = (
-                state.prog_items[self.player]["5 FP"] * 5
-                + state.prog_items[self.player]["2 FP"] * 2
-                + state.prog_items[self.player]["FP"]
+                    state.prog_items[self.player]["5 FP"] * 5
+                    + state.prog_items[self.player]["2 FP"] * 2
+                    + state.prog_items[self.player]["FP"]
             )
             return fp >= self.count
 
@@ -113,8 +112,8 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             return self.calculate_drop_rate(state)[0] >= self.min_drop_rate
 
         def calculate_drop_rate(
-            self,
-            state: CollectionState,
+                self,
+                state: CollectionState,
         ) -> tuple[float, float]:
             drop_rate = 0.0 + self.base_drop_rate
 
@@ -136,7 +135,7 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             drop_multiplier += furthest_level * level_multiplier
 
             # only once you can reach day 3 for food to get to minimum style reqs [50 max required right now]
-            if inventory["Restaurant Access"] > 0:
+            if state.can_reach_region("W1D3"):
                 drop_increasing_items = DROP_INCREASING_THREADS
                 for thread in drop_increasing_items:
                     if inventory[thread] > 0:
@@ -147,9 +146,9 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             if self.chainable and (not self.blue_noise or (self.blue_noise and inventory["Bossy Noise"] > 0)):
                 chain_length = 5
                 if (
-                    inventory["Chain Extender (Tsukihime)"] > 0
-                    or inventory["Chain Extender (Tanzo Kubo)"] > 0
-                    or inventory["Chain Extender (Seiji-of-Some-Trades)"] > 0
+                        inventory["Chain Extender (Tsukihime)"] > 0
+                        or inventory["Chain Extender (Tanzo Kubo)"] > 0
+                        or inventory["Chain Extender (Seiji-of-Some-Trades)"] > 0
                 ):
                     # Since everything above a 10-chain is unrealistic in a lot of areas
                     chain_length += 5
