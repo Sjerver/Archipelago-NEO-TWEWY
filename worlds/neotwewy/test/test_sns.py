@@ -35,4 +35,4 @@ class TestSNSOff(NEOTwewyTestBase):
                         try:
                             self.world.get_location(location_name)
                         except KeyError:
-                            self.fail(f"Shop location {location_name} not in world")
+                            self.fail(f"SNS location {location_name} not in world")

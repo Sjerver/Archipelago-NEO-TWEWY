@@ -122,9 +122,7 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             drop_multiplier = 1.0
 
             level_multiplier = 1.0
-            if inventory["Plentiful Pins (MKN)"] > 0:
-                level_multiplier += 0.1
-            if inventory["Plentiful Pins (Yoko Norimoto)"] > 0:
+            for i in range(inventory["Plentiful Pins"]):
                 level_multiplier += 0.1
 
             furthest_level = 1
@@ -146,9 +144,7 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
             if self.chainable and (not self.blue_noise or (self.blue_noise and inventory["Bossy Noise"] > 0)):
                 chain_length = 5
                 if (
-                        inventory["Chain Extender (Tsukihime)"] > 0
-                        or inventory["Chain Extender (Tanzo Kubo)"] > 0
-                        or inventory["Chain Extender (Seiji-of-Some-Trades)"] > 0
+                        inventory["Chain Extender"] > 0
                 ):
                     # Since everything above a 10-chain is unrealistic in a lot of areas
                     chain_length += 5
@@ -163,11 +159,8 @@ class ReachedMinimumDropRate(Rule["NEOTwewyWorld"], game="NEO: The World Ends wi
         @override
         def item_dependencies(self) -> dict[str, set[int]]:
             required_items = [
-                "Plentiful Pins (MKN)",
-                "Plentiful Pins (Yoko Norimoto)",
-                "Chain Extender (Tsukihime)",
-                "Chain Extender (Tanzo Kubo)",
-                "Chain Extender (Seiji-of-Some-Trades)",
+                "Plentiful Pins",
+                "Chain Extender",
                 "Bossy Noise",
                 "Killer Remix",
             ]

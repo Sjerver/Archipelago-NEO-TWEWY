@@ -11,7 +11,6 @@ if TYPE_CHECKING:
 
 LOCATION_NAME_TO_ID = {location_name: location_data.id for location_name, location_data in LOCATION_DATA.items()}
 
-
 class NEOTwewyLocation(Location):
     game = "NEO: The World Ends with You"
 
@@ -27,7 +26,10 @@ def create_all_locations(world: NEOTwewyWorld) -> None:
 
 def create_regular_locations(world: NEOTwewyWorld) -> None:
     for location, location_data in LOCATION_DATA.items():
-        if not LOCATION_INCLUSION[location_data.location_type](world) and not location_data.lock:
+
+        lock = location_data.lock | (location_data.location_type == location_data.location_type.Dive)
+
+        if not LOCATION_INCLUSION[location_data.location_type](world) and not lock:
             continue
         if location_data.option == "" or location_data.option is None:
             world.get_region(location_data.region).add_locations(
@@ -46,18 +48,10 @@ def create_regular_locations(world: NEOTwewyWorld) -> None:
                 world.get_region(location_data.region).add_locations(
                     get_location_names_with_ids([location]), NEOTwewyLocation
                 )
-        if location_data.lock and not LOCATION_INCLUSION[location_data.location_type](world):
+        if lock and not LOCATION_INCLUSION[location_data.location_type](world):
             items.create_item_in_locked_location(world, location_data.og_item, location)
-
 
 def create_events(world: NEOTwewyWorld) -> None:
     # Victory Condition
     w1d5 = world.get_region("W1D5")
     w1d5.add_event("Reached Day 5", "Victory", location_type=NEOTwewyLocation, item_type=items.NEOTwewyItem)
-
-    # Difficulty fake events
-    w1d1 = world.get_region("W1D1")
-    w1d1.add_event("Easy Unlocked", "EASY DIFFICULTY", location_type=NEOTwewyLocation, item_type=items.NEOTwewyItem)
-
-    w1d4 = world.get_region("W1D4")
-    w1d4.add_event("Hard Unlocked", "HARD DIFFICULTY", location_type=NEOTwewyLocation, item_type=items.NEOTwewyItem)

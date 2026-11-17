@@ -8,13 +8,14 @@ if TYPE_CHECKING:
     from .world import NEOTwewyWorld
 
 REGION_NAMES: list[str] = [
+    "W1D0",
     "W1D1",
     "W1D2",
     "W1D2'",
     "W1D3",
     "W1D3'",
     "W1D4",
-    "W1D5",
+    "W1D5",  # Currently just for goaling
     # Everything after this point is not fully implemented
     "W1D6",
     "W1D7",

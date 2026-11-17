@@ -30,8 +30,6 @@ class TestDefault(NEOTwewyTestBase):
             for location_name, location_data in LOCATION_DATA.items():
                 if location_data.location_type == NEOTwewyLocationType.Shop:
                     self.assertRaises(KeyError, self.world.get_location, location_name)
-                if location_data.location_type == NEOTwewyLocationType.Dive:
-                    self.assertRaises(KeyError, self.world.get_location, location_name)
                 if location_data.location_type == NEOTwewyLocationType.NoiseDrop:
                     self.assertRaises(KeyError, self.world.get_location, location_name)
                 if location_data.location_type == NEOTwewyLocationType.Pig:

@@ -126,6 +126,32 @@ class SNS(Toggle):
     display_name = "Randomize Social Network Nodes"
 
 
+class Skills(Toggle):
+    """
+    Adds the skills from the social network as items and their unlocks as locations.
+    """
+
+    display_name = "Randomize Social Network Skills"
+
+
+class FPCost(Choice):
+    """
+    Per design of this AP world, purchasing a skill in the social network no longer reduces FP, and FP is only required
+    to unlock the option to "purchase" a skill.
+    You choose to leave the FP costs of nodes as is, make them add up cumulatively in order of avaialability or randomize
+    the cost for each node.
+    No skill will ever cost more than the total amount of FP available.
+    """
+
+    display_name = "FP Cost"
+
+    option_vanilla = 0
+    option_cumulative = 1
+    option_randomize = 2
+
+    default = option_vanilla
+
+
 class CutsceneSkipSpeed(Range):
     """
     The speed multiplier applied to cutscenes and overworld dialog.
@@ -136,6 +162,32 @@ class CutsceneSkipSpeed(Range):
     range_start = 10
     range_end = 100
     default = 10
+
+
+class ShopHint(Toggle):
+    """
+    Send out a hint when viewing a shop item for the first time.
+    """
+
+    display_name = "Shop Hints"
+
+
+class SkillHint(Toggle):
+    """
+    Send out a hint when viewing a social nodes skill for the first time.
+    """
+
+    display_name = "Skill Location Hints"
+
+
+class SecretReportHints(Toggle):
+    """
+    Sends out a hint for a secret report once per day when beating a day without the
+    required amount of secret reports to progress.
+    """
+
+    display_name = "Secret Report Hints"
+
 
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
@@ -151,6 +203,11 @@ class NEOTwewyOptions(PerGameCommonOptions):
     soundsurf: Soundsurf
     sns: SNS
     cutscene_skip_speed: CutsceneSkipSpeed
+    skills: Skills
+    fp_cost: FPCost
+    shop_hints: ShopHint
+    skill_hints: SkillHint
+    secret_report_hints: SecretReportHints
 
 
 option_groups = [
@@ -159,6 +216,12 @@ option_groups = [
     ),
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
+    ),
+    OptionGroup(
+        "Skill Options", [Skills, FPCost]
+    ),
+    OptionGroup(
+        "Hint Options", [ShopHint, SkillHint, SecretReportHints]
     ),
     OptionGroup("Quality of Life", [Soundsurf, CutsceneSkipSpeed]
                 ),

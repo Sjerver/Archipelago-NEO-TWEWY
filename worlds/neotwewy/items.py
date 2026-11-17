@@ -28,7 +28,6 @@ def get_item_groups(item_to_get: Item) -> list[str] | list[None]:
 
 
 def get_random_filler_item_name(world: NEOTwewyWorld) -> str:
-    # TODO: How do we reduce chance of duplicate items???
     filler_items = [item for item, data in ITEM_DATA.items() if
                     data.item_classification in [ItemClassification.filler, ItemClassification.skip_balancing]]
     return random.choice(filler_items)
