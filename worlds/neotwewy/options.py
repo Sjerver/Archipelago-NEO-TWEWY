@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, Visibility
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 
 class MinamimotoStartingPin(Toggle):
@@ -79,6 +79,7 @@ class PreventOutOfLogicDrops(Toggle):
 
     display_name = "Prevent out-of-logic Noise Drops"
 
+
 class PigDrops(Toggle):
     """
     Includes drops from pigs as locations.
@@ -87,6 +88,7 @@ class PigDrops(Toggle):
     """
 
     display_name = "Pig Drops"
+
 
 class DLCOptions(Choice):
     """
@@ -115,6 +117,78 @@ class Soundsurf(Toggle):
 
     display_name = "Start with Soundsurf"
 
+
+class SNS(Toggle):
+    """
+    Adds the unlocking of characters for the social network as locations and items.
+    """
+
+    display_name = "Randomize Social Network Nodes"
+
+
+class Skills(Toggle):
+    """
+    Adds the skills from the social network as items and their unlocks as locations.
+    """
+
+    display_name = "Randomize Social Network Skills"
+
+
+class FPCost(Choice):
+    """
+    Per design of this AP world, purchasing a skill in the social network no longer reduces FP, and FP is only required
+    to unlock the option to "purchase" a skill.
+    You choose to leave the FP costs of nodes as is, make them add up cumulatively in order of avaialability or randomize
+    the cost for each node.
+    No skill will ever cost more than the total amount of FP available.
+    """
+
+    display_name = "FP Cost"
+
+    option_vanilla = 0
+    option_cumulative = 1
+    option_randomize = 2
+
+    default = option_vanilla
+
+
+class CutsceneSkipSpeed(Range):
+    """
+    The speed multiplier applied to cutscenes and overworld dialog.
+    10x is the default value the game applies normally.
+    """
+
+    display_name = "Cutscene Skip Speed"
+    range_start = 10
+    range_end = 100
+    default = 10
+
+
+class ShopHint(Toggle):
+    """
+    Send out a hint when viewing a shop item for the first time.
+    """
+
+    display_name = "Shop Hints"
+
+
+class SkillHint(Toggle):
+    """
+    Send out a hint when viewing a social nodes skill for the first time.
+    """
+
+    display_name = "Skill Location Hints"
+
+
+class SecretReportHints(Toggle):
+    """
+    Sends out a hint for a secret report once per day when beating a day without the
+    required amount of secret reports to progress.
+    """
+
+    display_name = "Secret Report Hints"
+
+
 @dataclass
 class NEOTwewyOptions(PerGameCommonOptions):
     minamimoto_pin: MinamimotoStartingPin
@@ -127,13 +201,28 @@ class NEOTwewyOptions(PerGameCommonOptions):
     pig_drops: PigDrops
     dlc_options: DLCOptions
     soundsurf: Soundsurf
+    sns: SNS
+    cutscene_skip_speed: CutsceneSkipSpeed
+    skills: Skills
+    fp_cost: FPCost
+    shop_hints: ShopHint
+    skill_hints: SkillHint
+    secret_report_hints: SecretReportHints
 
 
 option_groups = [
     OptionGroup(
-        "General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions, Soundsurf]
+        "General Gameplay Options", [MinamimotoStartingPin, IncludeShops, Dive, PigDrops, DLCOptions, SNS]
     ),
     OptionGroup(
         "Noise Options", [NoiseDrops, MinimumDropRateForLogic, DeprioritizeNonChainable, PreventOutOfLogicDrops]
     ),
+    OptionGroup(
+        "Skill Options", [Skills, FPCost]
+    ),
+    OptionGroup(
+        "Hint Options", [ShopHint, SkillHint, SecretReportHints]
+    ),
+    OptionGroup("Quality of Life", [Soundsurf, CutsceneSkipSpeed]
+                ),
 ]

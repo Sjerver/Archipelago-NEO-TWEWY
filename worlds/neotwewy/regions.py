@@ -7,14 +7,15 @@ from BaseClasses import Region
 if TYPE_CHECKING:
     from .world import NEOTwewyWorld
 
-REGION_NAMES = [
+REGION_NAMES: list[str] = [
+    "W1D0",
     "W1D1",
     "W1D2",
     "W1D2'",
     "W1D3",
     "W1D3'",
     "W1D4",
-    "W1D5",
+    "W1D5",  # Currently just for goaling
     # Everything after this point is not fully implemented
     "W1D6",
     "W1D7",
@@ -62,15 +63,17 @@ EXPECTED_LEVEL_PER_REGION: dict[str, int] = {
     "W4D1": 80,
 }
 
+
 def create_and_connect_regions(world: NEOTwewyWorld) -> None:
     create_all_regions(world)
     connect_regions(world)
 
-def create_all_regions(world: NEOTwewyWorld) -> None:
 
+def create_all_regions(world: NEOTwewyWorld) -> None:
     regions = [Region(name, world.player, world.multiworld) for name in REGION_NAMES]
 
     world.multiworld.regions += regions
+
 
 def connect_regions(world: NEOTwewyWorld) -> None:
     for i in range(REGION_NAMES.__len__()):

@@ -27,3 +27,25 @@ class TestDefault(NEOTwewyTestBase):
             # Thread with correct brand should work
             self.collect_by_name("Shredded Jeans")
             self.assertTrue(w1d3_2.can_reach(self.multiworld.state))
+
+    def test_VIP(self):
+        with self.subTest("Test that VIP location in shop reachable"):
+            vip_location_name = "[Shop] W1D4 - garagara Poncho (VIP 2)"
+            vip_location = self.world.get_location(vip_location_name)
+
+            w1d4 = self.world.get_region("W1D4")
+            self.assertFalse(w1d4.can_reach(self.multiworld.state))
+            self.collect_by_name("Secret Report No. 1")
+            self.collect_by_name("Secret Report No. 2")
+            self.collect_by_name("Secret Report No. 3")
+
+            self.assertFalse(w1d4.can_reach(self.multiworld.state))
+            self.collect_by_name("Shredded Jeans")
+            self.assertTrue(w1d4.can_reach(self.multiworld.state))
+
+            self.assertFalse(vip_location.can_reach(self.multiworld.state))
+            self.assertFalse(self.world.get_location("[VIP] garagara Level 2").can_reach(self.multiworld.state))
+
+            self.collect_by_name("Progressive VIP garagara")
+            self.assertTrue(vip_location.can_reach(self.multiworld.state))
+            self.assertTrue(self.world.get_location("[VIP] garagara Level 2").can_reach(self.multiworld.state))

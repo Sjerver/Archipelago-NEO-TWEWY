@@ -1,8 +1,9 @@
 from worlds.neotwewy.location_data import LOCATION_DATA, NEOTwewyLocationType
 from worlds.neotwewy.test.bases import NEOTwewyTestBase
 
-# Current known lowest drop rate: Swing Shark HARD Drop of 0.08
 
+# Current known lowest drop rate: Swing Shark HARD Drop of 0.08
+LOWEST_DROP_RATE_LOC: str = "[Noise] Swing Shark HARD Drop"
 
 class Test0Drops(NEOTwewyTestBase):
     options = {
@@ -12,6 +13,7 @@ class Test0Drops(NEOTwewyTestBase):
         "noise_drops": True,
         "min_drop_rate": 0,
         "pig_drops": False,
+        "skills": True,
     }
 
     def test_noise_drops_exist(self):
@@ -24,7 +26,7 @@ class Test0Drops(NEOTwewyTestBase):
                         self.fail(f"Noise Drop location {location_name} not in world")
 
     def test_0_drops(self) -> None:
-        self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
 
         # Reaching W1D4
         self.collect_by_name("Secret Report No. 1")
@@ -38,13 +40,14 @@ class Test0Drops(NEOTwewyTestBase):
 
         self.collect_by_name("Dazzling Denim Cap")
 
-        self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
 
         # Should unlock Hard Mode
         self.collect_by_name("5 FP")
         self.collect_by_name("5 FP")
+        self.collect_by_name("HARD Difficulty")
 
-        self.assertTrue(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertTrue(self.can_reach_location(LOWEST_DROP_RATE_LOC))
 
 
 class Test1000Drops(NEOTwewyTestBase):
@@ -55,10 +58,12 @@ class Test1000Drops(NEOTwewyTestBase):
         "noise_drops": True,
         "min_drop_rate": 100,
         "pig_drops": False,
+        "skills": True,
     }
 
+
     def test_lowest_drops(self) -> None:
-        self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
 
         # Reaching W1D4
         self.collect_by_name("Secret Report No. 1")
@@ -67,19 +72,58 @@ class Test1000Drops(NEOTwewyTestBase):
         self.collect_by_name("Midaregami")
         self.collect_by_name("Dazzling Denim Cap")
 
-        self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
+
+        # Should unlock Hard Mode
+        self.collect_by_name("5 FP")
+        self.collect_by_name("5 FP")
+        self.collect_by_name("HARD Difficulty")
+        # Since we can chain should be true
+        self.assertTrue(self.can_reach_location(LOWEST_DROP_RATE_LOC))
+        # self.assertFalse(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
+        # #Increases drop rate by 1 -> Multiplier = 18
+        # self.collect_by_name("Oversized Beanie")
+        #
+        # self.assertFalse(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
+        # #Increases drop rate by 5
+        # self.collect_by_name("Hippie Shoulder Bag")
+        #
+        # self.assertTrue(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
+
+
+class Test1000DropsWithoutSkills(NEOTwewyTestBase):
+    options = {
+        "minamimoto_pin": False,
+        "shops": False,
+        "dive": True,
+        "noise_drops": True,
+        "min_drop_rate": 100,
+        "pig_drops": False,
+        "skills": False,
+    }
+
+    def test_lowest_drops(self) -> None:
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
+
+        # Reaching W1D4
+        self.collect_by_name("Secret Report No. 1")
+        self.collect_by_name("Secret Report No. 2")
+        self.collect_by_name("Secret Report No. 3")
+        self.collect_by_name("Midaregami")
+
+        self.assertFalse(self.can_reach_location(LOWEST_DROP_RATE_LOC))
 
         # Should unlock Hard Mode
         self.collect_by_name("5 FP")
         self.collect_by_name("5 FP")
         # Since we can chain should be true
-        self.assertTrue(self.can_reach_location("Swing Shark HARD Drop"))
-        # self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        self.assertTrue(self.can_reach_location(LOWEST_DROP_RATE_LOC))
+        # self.assertFalse(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
         # #Increases drop rate by 1 -> Multiplier = 18
         # self.collect_by_name("Oversized Beanie")
         #
-        # self.assertFalse(self.can_reach_location("Swing Shark HARD Drop"))
+        # self.assertFalse(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
         # #Increases drop rate by 5
         # self.collect_by_name("Hippie Shoulder Bag")
         #
-        # self.assertTrue(self.can_reach_location("Swing Shark HARD Drop"))
+        # self.assertTrue(self.can_reach_location(self.LOWEST_DROP_RATE_LOC))
